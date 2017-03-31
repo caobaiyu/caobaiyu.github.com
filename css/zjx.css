@@ -27,7 +27,9 @@ background: -o-linear-gradient(top, #fff, #0000ff);  /*Opera 11.10+*/
 
 font-family: "楷体";
 }
-a { text-decoration:none;}
+a { text-decoration:none;
+ color:#000000;
+}
 .heade { 
 	width: 1000px; 
 	margin: auto; 
@@ -102,8 +104,7 @@ margin: 10px 0 0 0;
 	border-bottom:2px groove  aqua;
 	
 }
-.tuijian::after{
-	content: '推荐';
+.tuijian>a>span{
 	font-family: '宋体';
 	color: #FE5187;
 }
