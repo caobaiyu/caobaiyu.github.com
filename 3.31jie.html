@@ -31,13 +31,35 @@
 		<div class="zhuyao clearfix">
 		<h4 class="dibt">git上传</h4>
 		 <img src="images/3.31.1.jpg" alt="没有" class="wztp" />
-		 <p> 1.从网上克隆项目<br />git clone https：//.....(粘贴复制的仓库路径)
-		 </p>
-		 <p>
-		 	2.cd 路径
-		 </p>
-		 <p>
-		 	3.git add .... 。这里是添加所需这个文件待提交；（ git add .  ：要注意后面的点。这里是添加整个目录，也可以像git add 一样，添加单个文件）
+		 <h4> 1. Document 对象：表示文档树的根节点，大部分属性和方法都是对元素进行操作。</h4>
+    <p>
+    	Document 对象是文档树的根节点。<br />
+
+获取一个Document对象通常是通过窗口的document属性。<br />
+Attribute document.createAttribute(attrName) ：
+创建一个属性对象。eg：document.createAttribute('id'); // 创建一个id属性<br />
+
+方法 HTMLElement document.createElement(elementName) ：
+创建一个元素对象。eg：document.createElement('a'); // 创建一个a元素 <br />
+
+方法 HTMLElement document.createElementNS(namespaceURI,attrName) 
+：创建一个元素对象，并指定命名空间。eg：document.createElementNS(
+"http://www.w3.org/1999/xhtml","a");<br />
+
+方法 EventType document.createEvent(eventType) ：
+创建一个指定的事件类型。<br />
+    </p>
+<h4> 2. Element 对象：表示文档中的元素，可包含为元素节点、文本节点以及注释节点。</h4>
+<p>
+	Element 对象表示文档中的元素，可包含为元素节点、文本节点以及注释节点。
+	string id ：设置或获取元素的id
+	 string innerText ：设置或获取元素内的文本内容。
+	
+</p>
+<h4> 3. Attr 属性对象：表示一个Element节点的属性。可获取、添加、修改指定的属性。</h4>
+
+<h4> 4. Event 对象：表示事件发生时的状态，比如事件在其中发生的元素、键盘按键的状态、
+鼠标的位置、鼠标按钮的状态等等。</h4>
 		 </p>
 		 <p>4.git commit ..   添加文件到本地<br/>
 		 	5.然后： git push  origin master 这里就开始准备提交到网络上了(这里会要你输入用户名和密码。密码是不可见的。
