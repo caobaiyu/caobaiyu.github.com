@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/zjx.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/331.css"/>
+     <style type="text/css">
+			p{
+				color: #FFFFFF;
+				
+			}
+			h3,h4,h5{
+				color: yellow;
+			}
+			
+		</style>
+	
+	</head>
+	<body>
+		 <div class="heade clearfix">
+	 	<div class="logo">
+	 		<img src="images/lang.png"/>
+	 	</div>
+	 	<div class="lbiao">
+	 		<ul>
+	 			<li><a href="">首页</a></li>
+	 			<li><a href="">关于我</a></li>
+	 			<li><a href="">慢生活</a></li>
+	 			<li><a href="">碎言碎语</a></li>
+	 			<li><a href="">每日总结</a></li>
+	 			<li><a href="">学无止境</a></li>
+	 			<li><a href="">留言版</a></li>
+	 		</ul>
+	 	</div>
+	 	
+	 </div> 
+	<img src="images/banner_top.jpg" class="datu" />
+	<div class="mzhong ">
+		<div class="zuo clearfix">
+		<h3 class="tuijian"><a href="3.31jie">每日 <span>总结</span></a></h3>
+		<div class="zhuyao clearfix">
+		<h4 class="dibt">面向对象编程</h4>
+			<h5> 基本概念</h5>
+<p>ECMA关于对象的定义是：”无序属性的集合，
+其属性可以包含基本值、对象或者函数。
+“对象的每个属性或方法都有一个名字，
+而每个名字都映射到一个值。
+
+<h5>类</h5>
+
+<p>在现实生活中，相似的对象之间往往都有一些共同的组成特征。类，实际上是对象的设计蓝图或者制作配方。我们能基于相同的类创建出许多不同的对象，这些对象又会含有各自的属性和方法。
+</p>
+<h5>封装</h5>
+
+<p>封装主要用于阐述对象中所包含（或封装的内容），它通常由两部分组成：
+
+相关的数据（用于存储属性）
+基于这些数据所能做的事（所能调用的方法）</p>
+<h5>聚合</h5>
+
+<p>聚合是指我们将现有对象合并成一个新对象的过程。例如：Book是由一个或多个author对象，publisher对象、若干chapter对象等组合而成的对象。
+</p>
+<h5>继承</h5>
+
+<p>通过继承这种方式，我们可以非常优雅地实现对现有代码的重用。例如：我们定义了一个Person对象，他包含了wolk()，sleep(),speak(),eat()等方法，也包含了age,height,weight等属性，这时当我们再定义一个coder对象的时候，你不必将上述的属性和方法都重写一遍，你只需继承他即可，然后你只需将coder这个对象属于他自己的那部分特殊功能写出来。
+</p>
+<h5>多态</h5>
+
+<p>上述实例中，我们的coder对象继承了person对象的一些属性和方法，这意味着这两个对象都实现了"speak"等方法，现在，我们的代码中有一个叫做James的变量，即便是我们不知道它是一个person对象还是一个coder对象的情况下，也依然可以直接调用该对象的"speak"方法
+。类似这种不同对象通过相同的方法调用实现各自行为的能力，我们就称之为“多态”</p>
+	<h5>理解构造函数原型(prototype)机制</h5>	 
+	<p>	prototype是javascript实现与管理
+		继承的一种机制，也是面向对象的
+		设计思想.构造函数的原型存储着引用对象
+		的一个指针，该指针指向与一个原型对象
+		，对象内部存储着函数的原始属性和方法；
+		我们可以借助prototype属性，可以访问原型内部的属性和方法。
+
+   当构造函数被实列化后，所有的实例对象都
+   可以访问构造函数的原型成员，如果在原型中
+   声明一个成员，所有的实列方法都可以共享它。 </p>
+		
+	<p>	this的指向在
+		函数定义的时候是确定不了的，只有函数执行的时候才能确
+		定this到底指向谁
+		，实际上this的最终指向的是那个调用它的对象 </p>
+		 
+		<p class="sjzz"> 2017-4-13 </p>
+		</div>
+	</div>
+	<div class="you">
+		<h3 class="suixiang">随手记</h3>
+		<p>
+			<br />
+		function Foo(){<br />
+				getName = function(){<br />
+					alert(1);<br />
+				};<br />
+			return	this;<br />
+			}<br />
+			Foo.getName = function(){<br />
+				alert(2);<br />
+			}<br />
+			Foo.prototype.getName = function(){<br />
+				alert(3);<br />
+			}<br />
+			var getName = function(){<br />
+				alert(4);<br />
+			}<br />
+			function getName(){<br />
+				alert(5);<br />
+			}<br />
+			Foo.getName();// 2<br />
+			getName();//4<br />
+			Foo().getName();//1<br />
+			getName();//1<br />
+			new Foo.getName();//2<br />
+			new Foo().getName();//3<br />
+			new new Foo().getName();//3<br />
+		
+		</p>
+	</div>
+</div>
+	</body>
+</html>

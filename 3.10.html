@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>3.10</title>
+		<link rel="stylesheet" type="text/css" href="css/zjx.css"/>
+		<style type="text/css">
+			p{
+				color: #FFFFFF;
+				
+			}
+			h3,h4,h5{
+				color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="heade clearfix">
+	 	<div class="logo">
+	 		<img src="images/lang.png"/>
+	 	</div>
+	 	<div class="lbiao">
+	 		<ul>
+	 			<li><a href="">首页</a></li>
+	 			<li><a href="">关于我</a></li>
+	 			<li><a href="">慢生活</a></li>
+	 			<li><a href="">碎言碎语</a></li>
+	 			<li><a href="">每日总结</a></li>
+	 			<li><a href="">学无止境</a></li>
+	 			<li><a href="">留言版</a></li>
+	 		</ul>
+	 	</div>
+	 	
+	 </div> 
+	<img src="images/banner_top.jpg" class="datu" />
+	<div class="mzhong ">
+		<div class="zuo clearfix">
+		<h3 class="tuijian"><a href="3.31jie">每日 <span>总结</span></a></h3>
+		<div class="zhuyao clearfix">
+		<h4 class="dibt">语句类型总结</h4>
+		 <img src="images/3.31.1.jpg" alt="没有" class="wztp" />
+		 <p>
+		  1.var box = 100;//单行语句<br />
+2.{//用花括号包含的语句集合，叫做复合语句， 
+  //一对花括号，表示一个复合语句，     
+//复合语句，我们一般把它称作为代码块<br />
+    例：var height = 200;<br />
+        var width = 200;<br />
+}
+   <h5>do…while语句</h5>
+   <p>
+   	do…whlie语句是一种先行，后判断的循环语句。也就是会所，不管满足条件是否，至少执行一次.
+<br />例：var box = 1;<br />
+do { //先运行，在判断的循环体<br />
+      alert(box);//打印1<br />
+}while(box<=5); //想好判断语句，避免出现死循环.<br />
+注意：while的判断语句的条件，避免出项死循环.<br />
+.while语句（先判断，后执行）<br />
+例：var box = 5;	<br />
+while(box<=5){ <br />//先判断，再运行<br />
+                     alert(box);<br />
+                     box++;<br />
+}
+
+   </p>
+   <h5>for语句</h5>
+   <p>
+   	for(var box = 1; box<+5;box++);{<br />
+                        document.write(box);<br />
+}
+流程是：<br />第一步，声明变量var box = 1;<br />
+第二步，判断box <=5；<br />
+第三步，alert(box)；<br />
+第四步，box++<br />
+第五步，从第二步再来，直到判断为false<br />
+
+   </p>
+   <h5>break和dontinue语句</h5>
+   <p>
+   	break和continue语句用于在循环中精确地控制代码。<br />
+例：for(var box = 1;box<=10;box++){<br />
+    if(box==5)break; //立刻中断条件的语句<br />
+    document.write(box+'<br />');<br />
+}
+ 
+例：for (var box = 1; box<=10;box++){<br />
+       if(box==5)cuntinue;//退出当前语句，在执行接下的语句<br />
+        alert(box);<br />
+}
+<h4>函数</h4>
+   <p>
+   函数：是由事件驱动的或者当它被调用时执行的可重复使用的代码块。
+函数就是包裹在花括号中的代码块，前面使用了关键词 function：
+   <br />  例： function  dome() {<br />
+alert("Hello World!");<br />
+}<br />
+    dome() ;  //调用函数<br />
+提示：JavaScript 对大小写敏感。关键词 function 必须是小写的，并且必须以与函数名称相同的大小写来调用函数。
+<br />有参函数和无参函数<br />
+function aa(b,c){<br />
+//函数的声明，<br />无参函数aa()，<br />aa(bb)叫做有参函数，bb形参，变量
+                alert(b+c);<br />
+         }<br />
+ aa(2,5); // 函数的调用<br />
+ 这些参数可以在函数中使用。可以发送任意多的参数，由逗号 (,) 分隔.
+<br />函数特点：<br />
+1.	函数声明会自动提前.<br />
+2.	一次声明多次调用.<br />
+     优点：<br />
+1.	减少代码冗余；<br />
+2.	隐藏实现细节封装<br />
+     区别：<br />
+1.	有参函数与无参函数扩展性增大，<br />
+return<br /> 
+有返回值的函数，通过return进行返回，
+return语句之后代码不会被执行，
+通过return将计算机结果返回给调用者。<br />
+Var  var = typeof(“bbb”);判断数据类型，并返回一个string，<br />
+在函数内部声明的变量，只能在函数内部调用，
+在函数内部声明的变量，在函数外不能直接访问。
+
+   </p>
+   
+		
+		<p class="sjzz"> 2017-3-31 </p>
+		</div>
+	</div>
+	<div class="you">
+		<h3 class="suixiang">随手记</h3>
+		<h5>遗言</h5>
+		1乃复坏汝万里之长城！（《宋书．檀道济列传》）
+
+檀道济，南朝宋名将，“三十六计”作者。东晋末，从刘裕攻后秦，屡立战功，官至征南大将军。后文帝以其前朝重臣，诸子皆善战，忌而杀之。
+
+临刑前，檀道济投帽子于地，愤怒地喊道：“你们这是在自毁长城啊！”
+
+檀道济被枉杀，国人痛心。消息传到平城（今山西大同），南朝宿敌北魏诸将弹冠相庆：“檀道济一死，吴人无可畏惧也！”
+
+元嘉二十七年，文帝再令众将北伐。东线屡遭困挫，致使魏人南抵瓜步，欲饮马长江。面对一江之隔的劲敌，
+宋文帝长叹一声：“檀道济若在，岂使胡马至此！”
+可此时檀道济已屈死十四年了。<br />
+2.吾欲与若复牵黄犬俱出上蔡东门逐狡兔，岂可得乎！（《史记·李斯列传》）
+
+李斯，秦代著名政治家、文学家、书法家。
+
+秦始皇死后，他与赵高合谋，伪造遗诏，迫令始皇长子扶苏自杀，立少子胡亥为二世皇帝。后为赵高所忌，于秦二世二年（前208年）被腰斩于咸阳闹市，并夷三族。
+
+临刑前李斯看到自己最心爱的的幼子也在待斩行列内，忽然悲从心来，怆然曰：“我真想能像你儿时那样，父子俩牵着爱犬阿黄，带着猎鹰，出上蔡城东门去追捕狡兔啊，如今是不可能了！”听者无不落泪。
+	</div>
+</div>
+	</body>
+</html>
