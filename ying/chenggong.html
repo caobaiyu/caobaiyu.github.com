@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/chenggong.css"/>
+	</head>
+	<body>
+		
+		<!--**********************导航条*************************-->		
+		<div class="nav">
+			<div class="nav_main clearfix">
+				<div class="nm_logo">
+					<a href="index.html">
+					<img src="img/yizhiyong/logoo.jpg"/>
+					</a>
+				</div>
+				
+					<ul class="nm_nav">						
+						<a href="search-company.html"><li>项目浏览</li></a>
+						<a href="investor-list.html"><li>投资人</li></a>
+						<a href="guide.html"><li>用户导引</li></a>
+						<a href="about_our.html"><li>关于我们</li></a>
+					</ul>
+				<div class="nm_login">
+						<a href="my.html" class="al_my">我的账户</a>					
+					
+					<a href="" class="al_out">退出</a>
+			</div>
+				
+			</div>
+		</div>
+		
+		<!--*************************创建账号***************************-->
+	
+		<div class="cg_box">
+			<div class="cg_main">
+			<h3>注册成功 ！</h3>
+			<img src="img/creat_id/chenggongbiaozhi.jpg"/>
+			<div class="cg_btn">
+				<a href="already_login.html"><button>返回网站</button></a>
+				<a href="cg_next.html"><button>进行实名认证</button></a>
+			</div>
+			
+			</div>									
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--***********************底部***************-->
+		<div class="footer">			
+			<div class="footer_top">
+				      <!--****logo****-->
+				   <div class="footer_logo">
+				   	<img src="img/yizhiyong/footer_logo.jpg"/>
+				   </div>
+				   <!--***现在开始***-->
+				<div class="footer_ul">
+				   	<h4>现在开始</h4>
+				   	<ul>
+				   		<li>梦想发起</li>
+				   		<li>账号注册</li>
+				   		<li>账号登录</li>
+				   	</ul>
+				   </div>
+				   <!--***项目浏览***-->
+				   <div class="footer_ul">				   	
+						<h4>项目浏览</h4>
+					   	<ul>
+					   		<li>趋势</li>
+					   		<li>已完成</li>
+					   		<li>新的值得关注的</li>
+					   		<li>微信群</li>
+					   	</ul>
+				   </div>
+				   <!--***关于我们***-->
+				   <div class="footer_ul">
+				   	<h4>关于我们</h4>
+					   	<ul>
+					   		<li>FAQ</li>
+					   		<li>用户引导</li>
+					   		<li>联系我们</li>					   		
+					   	</ul>
+				   </div>
+				   <!--***法律***-->
+				   <div class="footer_ul">
+				   		<h4>关于我们</h4>
+					   	<ul>
+					   		<li>FAQ</li>
+					   		<li>用户引导</li>
+					   		<li>联系我们</li>					   		
+					   	</ul>
+				   </div>
+				
+				<!--****二维码*******-->
+				<div class="footer_erwei">
+				   		<img src="img/yizhiyong/erweima.gif"/>
+				   		<p>扫码关注微信公众平台</p>
+				   </div>
+				
+			</div>
+			
+			<div class="footer_foo">
+				
+
+				<p>Fundable is a software as a service 
+				crowdfunding platform. Fundable is 
+				not a registered broker-dealer and 
+				does not offer investment advice or
+				 advise on the raising of capital 
+				 through securities offerings. 
+				 Fundable does not recommend or 
+				 otherwise suggest that any investor
+				  make an investment in a particular
+				   company, or that any company offer 
+				   securities to a particular investor.
+				    Fundable takes no part in the 
+				    negotiation or execution of 
+				    transactions for the purchase or 
+				    sale of securities, and at no time 
+				    has possession of funds or 
+				    securities. No securities 
+				    transactions are executed or 
+				    negotiated on or through the 
+				    Fundable platform. Fundable receives
+				     no compensation in connection with the purchase
+				      or sale of securities.
+</p>
+				<p>Copyright © Fundable LLC 2016. All rights reserved.</p>
+				
+			</div>
+			
+			
+		</div>
+		<div id="huiding">
+		回顶
+	</div>	
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var obj = document.getElementById("huiding")
+				window.onscroll = function(){
+					
+					 getScrollTop() > 0 ? obj.style.display = "block" : obj.style.display = "none";				
+				}
+				
+				obj.onclick = function(){
+					var  timer = null;
+					scrollTo(0,0);
+//					timer = setInterval(function(){
+//						var topT = document.documentElement.scrollTop || document.body.scrollTop;
+//						if(topT>0){
+//							scrollTo(0,topT-50);
+//							
+//						}else{
+//							scrollTo(0,0);
+//							console.log("2222")
+//							clearInterval(timer)
+//						}
+//						
+//					},33)
+
+				}
+				
+//				function anhui(){
+//					var topT = document.documentElement.scrollTop || document.body.scrollTop;
+//					if(topT>60){
+//						scrollTo(0,topT-50);
+//						
+//					}else{
+//						scrollTo(0,0);
+//						console.log("2222")
+//						clearInterval(timer)
+//					}
+//					
+//				}
+//				
+				
+				
+function getScrollTop(){
+ return document.documentElement.scrollTop || document.body.scrollTop;
+}												
+			}
+			
+			</script>
+	</body>
+</html>

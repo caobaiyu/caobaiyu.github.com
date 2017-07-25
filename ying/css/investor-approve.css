@@ -1,0 +1,267 @@
+  input[type="text"]{  
+   background:none;  
+   outline:none;  
+   border:0px;  
+}  
+  input[type="text"]{
+	width: 218px;
+	height: 34px;
+	padding-left: 10px;
+	border:1px solid #cccccc ;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
+  font-size: 12px;
+}
+ input[type="text"]:focus{
+	border-color: #1a9ed7 ;
+}
+  #huiding{width: 20px;height: 20px;line-height: 20px;
+text-align: center;position: fixed;top: 50%;right: 0;
+display: none;background-color: #0066CC;opacity: .3;border: 3px;font-size: 12px;color: greenyellow;}
+
+#huiding:hover{opacity:1;width: 30px;height: 30px;line-height: 30px}
+
+
+
+  /*----------------------------------导航条------------------------------*/
+
+.nav{
+	width: 100%;
+	height: 70px;
+	background-color: #1a1a1a;
+}
+
+.nav_main{
+	width: 990px;
+	margin: auto;
+}
+
+.nm_logo{
+	float: left;
+	margin-top: 7px;	
+}
+
+     
+.nm_nav{
+	float: left;
+	margin-left: 10px;
+	
+	
+}
+.nm_nav a li{
+
+	margin-left: 40px;
+	height: 100%;
+	display: inline-block;
+	line-height:70px ;	
+}
+
+.nm_nav  a{
+    color: #999999;
+}
+.nm_nav a:hover{ color: #fafafa;}
+.nm_login{
+	float: right;
+}
+
+
+.al_my{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin-top: 15px;
+	margin-right: 30px;
+	line-height: 40px;
+	color: #fff;
+	background-color: #1ab2dc;
+	border-radius: 3px;
+}
+
+.al_out{
+	display: inline-block;
+	margin-right: 35px;
+	color: #999999;
+}
+
+/*----------------------合格投资人认证-------------------*/
+.ia_box{
+	width: 100%;
+	padding: 25px 0 85px 0;
+	background-color: #ecf0f1;
+}
+.ia_main{
+	width: 990px;
+	margin:0 auto;
+	background-color: #fff;
+	border: 1px solid #cbcfd0;
+	border-radius: 3px;
+	padding: 30px 0 65px 50px;
+	position:relative;
+}
+.ia_main h3{
+	color: #000;
+	font-size:28px;
+	text-align: center;
+}
+.ia_main .ia_main_p1{
+	margin-top: 10px;
+	color: #585858;
+	font-size:18px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.ia_main .ia_main_p1::after{
+	content: "";
+	display: block;
+	width: 100%;
+	height:20px;
+	background: url(../img/creat_id/rounded-shadow.png) no-repeat;
+	position: absolute;
+	top:120px;
+	left: 0;
+}
+.ia_main form p{
+	font-size: 18px;
+	margin-top: 15px;
+	height: 40px;
+	line-height: 40px;
+	color: #999;
+}
+
+.ia_main form{
+	color:#666666 ;
+}
+
+
+
+
+.ia_lab_inp{
+	margin-top: 15px;
+	font-size: 12px;
+}
+.ia_lab_inp label{
+	display: block;	
+	
+	text-align: left;
+	margin-bottom: 5px;
+	color: #747474;
+}
+.in_texra input{
+	margin-right: 5px;
+	vertical-align: -1px;
+}
+.in_texra span{
+	display: inline-block;
+	width: 100px;
+	height: 24px;
+	cursor: pointer;
+}
+.ia_lab_twoinp input{
+	width: 45px;
+	height: 20px;
+	border-radius: 2px;
+}
+.inp_checkbox input ,.inp_checkbox2 input{
+	width: 12px;
+	height: 12px;
+	margin-right: 5px;
+	vertical-align: -2px;
+}
+.inp_checkbox span{
+	display: inline-block;
+	width: 95px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.inp_checkbox2 span{
+	display: inline-block;
+	width: 155px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.btn_a_xia{margin-top:35px ;
+	display:block ;
+	width: 230px;
+	height:34px ;
+	background-color: #1ba2dc;
+	color: #fff;
+	line-height:34px;
+	border-radius: 3px;
+	text-align: center;
+	margin: 110px auto 0;
+	line-height: 34px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------底部------------------------*/
+.footer{
+	width: 100%;
+	height: 570px;
+	background-color: #242424;
+	overflow: hidden;
+	
+}
+
+.footer_top{
+	width: 990px;
+	margin: 100px auto 0;
+	height: 220px;
+	border-bottom: 2px solid #333;
+}
+.footer_logo,.footer_ul,.footer_erwei{
+	/*display: inline-block;*/
+	float: left;
+	height: 100%;
+}
+
+.footer_logo{
+	width: 235px;
+}
+.footer_ul{
+	width: 150px;
+}
+.footer_ul h4{
+	color: #fafafa;
+	font-size: 14px;
+	height: 40px;
+}
+.footer_ul ul li{
+	color: #81888e;
+	font-size: 12px;
+	height: 30px;
+}
+.footer_erwei{
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	color: #81888e;
+}
+.footer_erwei p{
+	margin-top: 23px;
+}
+.footer_foo{
+	width: 990px;
+	margin: 20px auto;
+	line-height: 20px;
+	font-size: 12px;
+	color: #81888e;	
+}
+
+.footer_foo p{
+	margin-top: 10px;
+}

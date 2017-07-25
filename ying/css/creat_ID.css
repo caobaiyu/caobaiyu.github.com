@@ -1,0 +1,366 @@
+  input{  
+   background:none;  
+   outline:none;  
+   border:0px;  
+}  
+#huiding{width: 20px;height: 20px;line-height: 20px;
+text-align: center;position: fixed;top: 50%;right: 0;
+display: none;background-color: #0066CC;opacity: .3;border: 3px;font-size: 12px;color: greenyellow;}
+
+#huiding:hover{opacity:1;width: 30px;height: 30px;line-height: 30px}
+
+
+  
+  
+  /*----------------------------------导航条------------------------------*/
+
+.nav{
+	width: 100%;
+	height: 70px;
+	background-color: #1a1a1a;
+}
+
+.nav_main{
+	width: 990px;
+	margin: auto;
+}
+
+.nm_logo{
+	float: left;
+	margin-top: 7px;	
+}
+
+     
+.nm_nav{
+	float: left;
+	margin-left: 10px;
+	
+	
+}
+.nm_nav a li{
+
+	margin-left: 40px;
+	height: 100%;
+	display: inline-block;
+	line-height:70px ;	
+}
+
+.nm_nav  a{
+    color: #999999;
+}
+.nm_nav a:hover{ color: #fafafa;}
+
+.nm_login{
+	float: right;
+}
+
+.nm_res{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin-top: 15px;
+	line-height: 40px;
+	color: #fff;
+	background-color: #1ab2dc;
+	border-radius: 3px;
+	
+}
+.nm_logi{
+	display: inline-block;
+	margin-right: 30px;
+	color: #999999;
+}
+
+.al_my{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin-top: 15px;
+	margin-right: 30px;
+	line-height: 40px;
+	color: #fff;
+	background-color: #1ab2dc;
+	border-radius: 3px;
+}
+
+.al_out{
+	display: inline-block;
+	margin-right: 35px;
+	color: #999999;
+}
+
+/*----------------------创建账号-------------------*/
+
+.cI_main{
+	width: 100%;
+	padding: 25px 0 110px 0;
+	background-color: #ecf0f1;
+	font-size: 18px;
+}
+.cI_main_creat{
+	width: 990px;
+	/*height: 578px;*/
+	margin: 0 auto;
+	border: 1px solid #cbcfd0;
+	border-radius: 2px;
+	background-color: #ffffff;
+	text-align: center;
+	position: relative;
+}
+.cI_main_creat p::after{
+	content: "";
+	display: block;
+	width: 100%;
+	height:20px;
+	background: url(../img/creat_id/rounded-shadow.png) no-repeat;
+	position: absolute;
+	top:120px;
+	left: 0;
+}
+.cI_main_creat h3{
+	font-size:28px;
+	margin-top: 30px;
+	color: #000;
+}
+.cI_main_creat p{
+	margin-top: 10px;
+	color: #585858;
+}
+
+.cI_main_creat h5{
+	color: #999999;
+	margin-top: 10px;
+}
+
+/*--左--*/
+.cIm_left,.cIm_midd,.cIm_right{
+	float: left;
+	margin-top:75px;
+	height: 400px;
+}
+.cIm_left{
+	width: 330px;
+}
+.cIm_left h5{
+	margin-bottom: 25px;
+}
+.cIm_left img{
+	margin-top: 30px;
+}
+/*---中---*/
+.cIm_midd{
+	   width: 230px;
+		padding: 0 48px;
+		text-align: left;
+		border-left:1px dashed #cccccc;
+		border-right:1px dashed #cccccc;
+}
+.cIm_midd h5{
+	margin-bottom: 40px;
+	text-align: center;
+}
+.cIm_midd label{
+	display: block;	
+	font-size: 12px;
+	text-align: left;
+	margin-bottom: 5px;
+	color: #747474;
+}
+.cIm_midd_pho,.cIm_midd_psd{
+	margin-bottom: 35px;
+}
+.cIm_midd input{
+	width: 218px;
+	height: 34px;
+	padding-left: 10px;
+	border:1px solid #cccccc ;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
+  font-size: 12px;
+}
+.cIm_midd input:focus{
+	border-color: blue ;
+}
+.cIm_midd button{
+	width: 80px;
+	height: 35px;
+	background-color:#1ba2dc ;
+	border-radius: 3px;
+	float: right;
+	font-size: 14px;
+	color: #fbfbfb;
+	line-height:35px ;
+}
+.cIm_midd a{font-size:12px ;text-decoration: underline;line-height: 35px;}
+/*--右--*/
+.cIm_right{
+		width: 230px;
+		padding: 0 48px;
+		text-align: left;
+		margin-bottom: 40px;
+}
+
+.cIm_right h5{
+	margin-bottom: 40px;
+	text-align: center;
+}
+.cIm_right div{
+	margin-top: 5px;
+	
+}
+.cIm_right label{
+	display: block;	
+	font-size: 12px;
+	text-align: left;
+	margin-bottom: 5px;
+	color: #747474;
+}
+.cIm_right input{
+	width: 218px;
+	height: 34px;
+	padding-left: 10px;
+	border:1px solid #cccccc ;
+	border-radius: 5px;
+	font-size: 12px;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
+}
+.cIm_right .cIm_right_yanzhen input{
+	width: 130px;
+	float: left;
+} 
+.cIm_right_yanzhen{overflow: hidden;}
+.cIm_right .cIm_right_yanzhen button{
+	display: block;
+	float: right;
+	width: 80px;
+	height:36px;
+	background-color: #bdc3c7;
+	border-radius: 2px;
+	line-height:36px ;
+	color: #fff;
+} 
+.cIm_right input:focus{
+	border-color: blue ;
+}
+.cIm_right .cIm_right_tijiao button{
+	margin-top:20px ;
+	width: 230px;
+	height: 34px;
+	line-height:34px ;
+	border-radius: 3px;
+	background-color:#1ba2dc ;
+	color: #fff;
+}
+
+
+
+/*------------------------------实名认证---------------------------------*/
+
+.cgn_main{
+	  width: 230px;
+		padding: 0 50px;
+		text-align: left;
+		margin: auto;
+		margin-top: 70px;
+		margin-bottom: 60px;
+}
+.cgn_main h5{
+	margin-bottom: 30px;
+	text-align: center;
+}
+.cgn_main label{
+	display: block;	
+	font-size: 12px;
+	text-align: left;
+	margin-bottom: 5px;
+	color: #747474;
+}
+.cgn_main form div{
+	margin-top: 15px;
+}
+.cgn_main input{
+	width: 218px;
+	height: 34px;
+	padding-left: 10px;
+	border:1px solid #cccccc ;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset;
+  font-size: 12px;
+}
+.cgn_main input:focus{
+	border-color: blue ;
+}
+.cgn_main button{
+	margin-top:35px ;
+	width: 230px;
+	height: 34px;
+	border-radius: 3px;
+	line-height:34px ;
+	background-color:#1ba2dc ;
+	color: #fff;
+}
+.cIm_midd a{font-size:12px ;}
+
+
+
+
+
+/*-------------------------底部------------------------*/
+.footer{
+	width: 100%;
+	height: 570px;
+	background-color: #242424;
+	overflow: hidden;
+	
+}
+
+.footer_top{
+	width: 990px;
+	margin: 100px auto 0;
+	height: 220px;
+	border-bottom: 2px solid #333;
+}
+.footer_logo,.footer_ul,.footer_erwei{
+	/*display: inline-block;*/
+	float: left;
+	height: 100%;
+}
+
+.footer_logo{
+	width: 235px;
+}
+.footer_ul{
+	width: 150px;
+}
+.footer_ul h4{
+	color: #fafafa;
+	font-size: 14px;
+	height: 40px;
+}
+.footer_ul ul li{
+	color: #81888e;
+	font-size: 12px;
+	height: 30px;
+}
+.footer_erwei{
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	color: #81888e;
+}
+.footer_erwei p{
+	margin-top: 23px;
+}
+.footer_foo{
+	width: 990px;
+	margin: 20px auto;
+	line-height: 20px;
+	font-size: 12px;
+	color: #81888e;	
+}
+
+.footer_foo p{
+	margin-top: 10px;
+}

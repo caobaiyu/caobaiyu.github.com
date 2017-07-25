@@ -1,0 +1,162 @@
+body{
+ 	width: 100%;
+ 	font-size: 14px;
+ 	background-color:#ecf0f1 ;
+ }
+             /*----------------------------------导航条------------------------------*/
+
+.nav{
+	width: 100%;
+	min-width: 1200px;
+	height: 70px;
+	background-color: #1a1a1a;
+}
+
+.nav_main{
+	width: 1200px;
+	margin: auto;
+}
+
+.nm_logo{
+	float: left;
+	margin-top: 7px;
+	
+}
+
+     
+.nm_nav{
+	float: left;
+	margin-left: 10px;
+	
+	
+}
+.nm_nav ul li{
+	margin-top: 27px;
+	margin-left: 40px;
+	display: inline-block;	
+}
+
+.nm_nav ul li a{
+    color: #999999;
+
+}
+.nm_login{
+	float: right;
+}
+
+.nm_res{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin-top: 15px;
+	line-height: 40px;
+	color: #fff;
+	background-color: #1ab2dc;
+	border-radius: 3px;
+	
+}
+.nm_logi{
+	display: inline-block;
+	margin-right: 30px;
+	color: #999999;
+}
+
+/*---already_login 页面上已登录状态----*/
+
+.al_my{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	margin-top: 15px;
+	margin-right: 30px;
+	line-height: 40px;
+	color: #fff;
+	background-color: #1ab2dc;
+	border-radius: 3px;
+}
+
+.al_out{
+	display: inline-block;
+	margin-right: 35px;
+	color: #999999;
+}
+
+
+/*------中-------*/
+
+.inv_inf_box{
+	width: 100%;
+     background-color: #f2f4f7;
+     padding: 30px 0 100px;
+}
+.ilb_main{
+	width: 1200px;
+	margin:0 auto;
+}
+
+
+
+
+
+
+/*-------------------------底部------------------------*/
+.footer{
+	width: 100%;
+	min-width: 1200px;
+	height: 570px;
+	background-color: #242424;
+	overflow: hidden;
+	
+}
+
+.footer_top{
+	width: 1200px;
+	margin: 100px auto 0;
+	height: 220px;
+	border-bottom: 2px solid #333;
+}
+.footer_logo,.footer_ul,.footer_erwei{
+	/*display: inline-block;*/
+	float: left;
+	height: 100%;
+}
+
+.footer_logo{
+	width: 300px;
+	margin-left: 10px;
+}
+.footer_ul{
+	width: 160px;
+}
+.footer_ul h4{
+	color: #fafafa;
+	font-size: 14px;
+	height: 40px;
+}
+.footer_ul ul li{
+	color: #81888e;
+	font-size: 12px;
+	height: 30px;
+}
+.footer_erwei{
+	width: 160px;
+	text-align: center;
+	vertical-align: middle;
+	color: #81888e;
+}
+.footer_erwei p{
+	margin-top: 23px;
+}
+.footer_foo{
+	width: 1200px;
+	margin: 20px auto;
+	line-height: 20px;
+	font-size: 12px;
+	color: #81888e;	
+}
+
+.footer_foo p{
+	margin-top: 10px;
+}

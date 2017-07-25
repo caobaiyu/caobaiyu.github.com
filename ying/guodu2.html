@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	    <script src="js/jq/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	    
+	</head>
+	<body>
+			<!--**********************导航条*************************-->
+	
+		<div class="nav">
+			<div class="nav_main clearfix">
+				<div class="nm_logo">
+					<img src="img/yizhiyong/logoo.jpg"/>
+				</div>
+				<ul class="nm_nav">						
+						<a href="search-company.html"><li>项目浏览</li></a>
+						<a href="investor-list.html"><li>投资人</li></a>
+						<a href="guide.html"><li>用户导引</li></a>
+						<a href="about_our.html"><li>关于我们</li></a>
+					</ul>
+				<div class="nm_login">
+					<a href="" class="nm_logi"> 登录</a>
+					<a href="" class="nm_res">创建账户</a>					
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<!--主要显示部分-->
+		<div class="main clearfix">
+			<!--左侧显示部分-->
+			
+			<div class="guo_kuilei">
+			<!--四   531-->
+			
+			<div class="guo_woshi_si  main_left_plan clearfix">
+				<div class="left_title">梦想发起·融资计划</div>
+				<img class="title_line" src="img/image/reg_line.png"/>
+				<div class="left_list clearfix">
+					<div class="list_title">项目估值</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+					<div class="list_title">融资目标额</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">出让股权</div>
+					<div class="list2">
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">%</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">最低跟投额</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+					<div class="list_title">最高跟投额</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">最低领投额度</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+					<div class="list_title">额度加价幅度</div>
+					<div class="list2">
+						<span class="num2">￥</span>
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">万元</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">是否允许超募</div>
+					<form class="form_recruiting">
+						<span class="radio">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img radio_active"></div>是</label>
+						</span>
+						<span class="radio">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img"></div>否</label>
+						</span>
+					</form>
+					<div class="list_title">超募比例</div>
+					<div class="list2">
+						<input type="text" class="input_name input_name2" value="" />
+						<span class="num">%</span>
+					</div>
+				</div>
+				<div class="list_btn">
+					<a href="index.html">
+						<div class="next">确定提交审核</div>
+					</a>
+					<a href="javascript:;">
+						<div class="prev">发布预览</div>
+					</a>
+				</div>
+				
+			</div>    <!--main_left-->
+			
+			<!--二    1176-->
+			
+			
+			<div class="guo_woshi_er  clearfix">
+				<div class="left_title">梦想发起·基本信息</div>
+				<img class="title_line" src="img/image/reg_line.png"/>
+				<div class="left_list clearfix">
+					<div class="list_title">项目简介</div>
+					<div class="uedit">
+						<object width="700px" height="370px" data="js/bianji/index.html"></object>
+					</div>
+				</div>  
+				<div class="left_list clearfix">
+					<div class="list_title">商业计划</div>
+					<div class="uedit">
+						<object width="700px" height="370px" data="js/bianji/index.html"></object>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">商业计划上传</div>
+					<div class="upload_box">
+						<div class="upload_btn">点击上传商业计划书</div>
+						<div class="upload_text">提示：请上传pdf格式文件，大小限制在10M之内</div>
+					</div>
+				</div>
+				<div class="list_btn">
+					<a href="#" onclick="huanye(3)">
+						<div class="next">保存，下一步</div>
+					</a>
+					<a href="#" onclick="huanye(1)">
+						<div class="prev">上一步</div>
+					</a>
+				</div>
+				
+			</div>
+			
+			
+			<!--三  841  -->
+			
+				<div class="guo_woshi_san  clearfix">
+				<div class="left_title">梦想发起·基本信息</div>
+				<img class="title_line" src="img/image/reg_line.png"/>
+				<div class="left_list clearfix">
+					<div class="list_title">团队介绍</div>
+					<div class="name textarea_box">
+						<textarea class="textarea textarea1" maxlength="100"></textarea>
+						<span class="num">0/500</span>
+					</div> 
+				</div>
+				<div class="person clearfix">
+					<div class="person_box">
+						<img class="person_head" src="img/image/head-img.png"/>
+						<div class="person_name">章</div>
+						<div class="person_job">CEO</div>
+						<div class="person_label">CEO</div>
+						<div class="btn_editor">修改</div>
+						<div class="btn_delete">删除</div>
+					</div>
+					<div class="person_box">
+						<img class="person_head" src="img/image/head-img.png"/>
+						<div class="person_name">章</div>
+						<div class="person_job">CEO</div>
+						<div class="btn_editor">修改</div>
+						<div class="btn_delete">删除</div>
+					</div>
+					<div class="person_box">
+						<img class="person_head" src="img/image/head-img.png"/>
+						<div class="person_name">章</div>
+						<div class="person_job">CEO</div>
+						<div class="btn_editor">修改</div>
+						<div class="btn_delete">删除</div>
+					</div>
+					<div class="person_box">
+						<img class="person_head" src="img/image/head-img.png"/>
+						<div class="person_name">章</div>
+						<div class="person_job">CEO</div>
+						<div class="btn_editor">修改</div>
+						<div class="btn_delete">删除</div>
+					</div>
+					<div class="person_box person_box_add" >
+						<img class="person_add" src="img/image/sp_info_add.png"/>
+						<div class="person_job">添加团队成员</div>
+					</div>
+				</div>
+				<div class="list_btn">
+					<a href="#" onclick="huanye(4)">
+						<div class="next">保存，下一步</div>
+					</a>
+					<a href="#" onclick="huanye(2)">
+						<div class="prev">上一步</div>
+					</a>
+				</div>
+				 
+			</div>
+	
+			<!--一      824-->
+		
+				<div class="guo_woshi_yi ">
+				<div class="left_title">梦想发起·基本信息</div>
+				<img class="title_line" src="img/image/reg_line.png"/>
+				<div class="left_list clearfix">
+					<div class="list_title add_title">上传头图</div>
+					<div class="list_add">
+						<img class="add_img" src="img/image/sp_info_add.png"/>
+					</div>
+					<img class="flower" src="img/image/sp_flower.png"/>
+					<div class="list_text">
+						图片大小请勿超过1MB<br />尺寸：500px高300px，支持JPG，PNG
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">项目名称</div>
+					<div class="name">
+						<input type="text" class="input_name" placeholder="请输入项目名称" maxlength="25"/>
+						<span class="num">0/25</span>
+					</div>
+					<img class="flower1" src="img/image/sp_flower.png"/>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">项目简介</div>
+					<div class="name textarea_box">
+						<textarea class="textarea" maxlength="100" placeholder="请简要描述项目的目标、定位。尽量简短，能给投资人留下深刻的印象"></textarea>
+						<span class="num">0/100</span>
+					</div>
+					<img class="flower1" src="img/image/sp_flower.png"/>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">所在城市</div>
+					<div class="city">请选择城市</div>
+					<div class="city_choose">
+						<ul class="city_nav">
+							<li class="li_border city_active">省份</li>
+							<li>城市</li>
+						</ul>
+						<ul class="city_detail clearfix">
+							<li class="city_detail_active">北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+							<li>北京市</li>
+						</ul>
+						<ul class="city_detail nav_active clearfix">
+							<li class="city_detail_active">北京市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+							<li>杭州市</li>
+						</ul>
+					</div>
+					<img class="flower1" src="img/image/sp_flower.png"/>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">所处阶段</div>
+					<div class="name">
+						<div class="stage">请选择项目阶段</div>
+						<ul class="stage_choose">
+							<li>请选择项目阶段</li>
+							<li>产品开发中</li>
+							<li>产品已上线或已上市</li>
+							<li>已有收入</li>
+							<li>已投盈利</li>
+							<li>尚未启动</li>
+						</ul>
+						<img class="down" src="img/image/sp_info_down.png"/>
+					</div>
+					<img class="flower1" src="img/image/sp_flower.png"/>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">所属行业</div>
+					<ul class="list_nav">
+						<li>PC互联网</li>
+						<li>移动互联网</li>
+						<li>PC互联网</li>
+						<li>新能源</li>
+						<li>文化创意</li>
+						<li>服务业</li>
+						<li>PC互联网</li>
+						<li>其他</li>
+					</ul>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">团队人数</div>
+					<div class="name">
+						<input type="text" class="input_name" placeholder="请输入团队人数"/>
+					</div>
+					<img class="flower1" src="img/image/sp_flower.png"/>
+				</div>
+				<a href="#" onclick="huanye(2)">
+					<div class="save_btn">保存，下一步</div>
+				</a>
+			</div>
+				
+			</div>		
+	
+			
+			
+			<!--右侧显示部分-->
+			<div class="main_right clearfix">
+				<div class="save">保存</div>
+				<div class="preview">发布预览</div>
+				<div class="right_list right_list1 list_active">
+					<img class="cicle_img" src="img/image/sp_info_circle1.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon1.png"/>
+					基本信息
+				</div>
+				<div class="right_list list_active mei_2_le">
+					<img class="cicle_img" src="img/image/sp_info_circle1.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon2-1.png"/>
+					项目内容
+				</div>
+				<div class="right_list  dao_2_le">
+					<img class="cicle_img" src="img/image/sp_info_circle2.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon2-1.png"/>
+					项目内容
+				</div>
+				<div class="right_list list_active mei_3_le">
+					<img class="cicle_img" src="img/image/sp_info_circle1.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon3-1.png"/>
+					团队构架
+				</div>
+				<div class="right_list  dao_3_le">
+					<img class="cicle_img" src="img/image/sp_info_circle2.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon3-1.png"/>
+					团队构架
+				</div>
+				<div class="right_list list_active mei_4_le">
+					<img class="cicle_img" src="img/image/sp_info_circle1.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon4-1.png"/> 
+					融资计划
+				</div>
+				<div class="right_list  dao_4_le">
+					<img class="cicle_img" src="img/image/sp_info_circle2.png"/>
+					<img class="list_icon" src="img/image/sp_info_icon4-1.png"/> 
+					融资计划
+				</div>
+			</div>   <!--main_right-->
+		</div>
+		
+		<div class="popup_box"> </div>
+			<div class="popup">
+				<div class="popup_title">增加团队成员信息</div>	
+				<img class="popup_line" src="img/image/reg_line.png"/>
+				<div class="left_list clearfix">
+					<div class="list_title add_title">上传头图</div>
+					<div class="list_add list_add2">
+						<img class="add_img" src="img/image/sp_info_add.png"/>
+					</div>
+					<div class="list_text">
+						图片大小请勿超过1MB，长宽比1:1，正方形<br />支持JPG，PNG
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">姓名</div>
+					<div class="name name2">
+						<input type="text" class="input_name" placeholder="请输入成员姓名" maxlength="50"/>
+					</div>
+					<div class="list_title">姓名</div>
+					<div class="name name2">
+						<input type="text" class="input_name" placeholder="请输入成员职务" maxlength="50"/>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">一句话简介</div>
+					<div class="name">
+						<input type="text" class="input_name" placeholder="如：职称/学历/荣誉" maxlength="50"/>
+						<span class="num">0/50</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">个人简介</div>
+					<div class="name textarea_box">
+						<textarea class="textarea" maxlength="200" placeholder="请简要描述项目的目标、定位。尽量简短，能给投资人留下深刻的印象"></textarea>
+						<span class="num">0/200</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">是否股东成员</div>
+					<form class="form_member">
+						<span class="radio radio_show">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img radio_active"></div>是</label>
+						</span>
+						<span class="radio radio_hide">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img"></div>否</label>
+						</span>
+					</form>
+				</div>
+				<div class="left_list member_list clearfix">
+					<div class="list_title">所占股份</div>
+					<div class="name name2">
+						<input type="text" class="input_name input_name2" placeholder="所占股份比例"/>
+						<span class="num">%</span>
+					</div>
+					<div class="list_title">实际出资金额</div>
+					<div class="name name2">
+						<input type="text" class="input_name input_name2" placeholder="实际出资金额"/>
+						<span class="num">万元</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">与创始人关系</div>
+					<div class="name">
+						<input type="text" class="input_name" placeholder="如：同事/朋友/合作伙伴" maxlength="100"/>
+						<span class="num">0/100</span>
+					</div>
+				</div>
+				<div class="left_list clearfix">
+					<div class="list_title">是否全职</div>
+					<form class="form_member">
+						<span class="radio">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img radio_active"></div>是</label>
+						</span>
+						<span class="radio">
+							<input type="radio" name="form_recruiting" /><label class="radio1"><div class="label_img"></div>否</label>
+						</span>
+					</form>
+				</div>
+				
+				<div class="btn_group">
+					<div class="cancel_btn2">取消</div>
+					<div class="save_btn2">保存</div>
+				</div>
+			</div>
+		
+		<!--***********************底部***************-->
+		<div class="footer">			
+			<div class="footer_top">
+				      <!--****logo****-->
+				   <div class="footer_logo">
+				   	<img src="img/yizhiyong/footer_logo.jpg"/>
+				   </div>
+				   <!--***现在开始***-->
+				<div class="footer_ul">
+				   	<h4>现在开始</h4>
+				   	<ul>
+				   		<li>梦想发起</li>
+				   		<li>账号注册</li>
+				   		<li>账号登录</li>
+				   	</ul>
+				   </div>
+				   <!--***项目浏览***-->
+				   <div class="footer_ul">				   	
+						<h4>项目浏览</h4>
+					   	<ul>
+					   		<li>趋势</li>
+					   		<li>已完成</li>
+					   		<li>新的值得关注的</li>
+					   		<li>微信群</li>
+					   	</ul>
+				   </div>
+				   <!--***关于我们***-->
+				   <div class="footer_ul">
+				   	<h4>关于我们</h4>
+					   	<ul>
+					   		<li>FAQ</li>
+					   		<li>用户引导</li>
+					   		<li>联系我们</li>					   		
+					   	</ul>
+				   </div>
+				   <!--***法律***-->
+				   <div class="footer_ul">
+				   		<h4>关于我们</h4>
+					   	<ul>
+					   		<li>FAQ</li>
+					   		<li>用户引导</li>
+					   		<li>联系我们</li>					   		
+					   	</ul>
+				   </div>
+				
+				<!--****二维码*******-->
+				<div class="footer_erwei">
+				   		<img src="img/yizhiyong/erweima.gif"/>
+				   		<p>扫码关注微信公众平台</p>
+				   </div>
+				
+			</div>
+			
+			<div class="footer_foo">
+				
+
+				<p>Fundable is a software as a service 
+				crowdfunding platform. Fundable is 
+				not a registered broker-dealer and 
+				does not offer investment advice or
+				 advise on the raising of capital 
+				 through securities offerings. 
+				 Fundable does not recommend or 
+				 otherwise suggest that any investor
+				  make an investment in a particular
+				   company, or that any company offer 
+				   securities to a particular investor.
+				    Fundable takes no part in the 
+				    negotiation or execution of 
+				    transactions for the purchase or 
+				    sale of securities, and at no time 
+				    has possession of funds or 
+				    securities. No securities 
+				    transactions are executed or 
+				    negotiated on or through the 
+				    Fundable platform. Fundable receives
+				     no compensation in connection with the purchase
+				      or sale of securities.
+</p>
+				<p>Copyright © Fundable LLC 2016. All rights reserved.</p>
+				
+			</div>
+			
+			
+		</div>
+		<div id="huiding">
+		回顶
+	</div>	
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var obj = document.getElementById("huiding")
+				window.onscroll = function(){
+					
+					 getScrollTop() > 0 ? obj.style.display = "block" : obj.style.display = "none";				
+				}
+				
+				obj.onclick = function(){
+					var  timer = null;
+					scrollTo(0,0);
+//					timer = setInterval(function(){
+//						var topT = document.documentElement.scrollTop || document.body.scrollTop;
+//						if(topT>0){
+//							scrollTo(0,topT-50);
+//							
+//						}else{
+//							scrollTo(0,0);
+//							console.log("2222")
+//							clearInterval(timer)
+//						}
+//						
+//					},33)
+
+				}
+				
+//				function anhui(){
+//					var topT = document.documentElement.scrollTop || document.body.scrollTop;
+//					if(topT>60){
+//						scrollTo(0,topT-50);
+//						
+//					}else{
+//						scrollTo(0,0);
+//						console.log("2222")
+//						clearInterval(timer)
+//					}
+//					
+//				}
+//				
+				
+				
+function getScrollTop(){
+ return document.documentElement.scrollTop || document.body.scrollTop;
+}												
+			}</script>
+		<script src="js/my__IP.js" type="text/javascript" charset="utf-8"></script>	
+	
+	</body>
+
+</html>
