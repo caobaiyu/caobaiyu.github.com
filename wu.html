@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+		.sdfgh{
+			width: 500px;
+				margin:100px auto;
+			
+		}
+		body{
+			width: 100%;
+				height: 100%;
+		}
+			#mycanv{
+
+				box-shadow: 5px 5px 5px #666666,
+				             -3px -3px 3px #666666;
+			}
+			#zhecen{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0;top: 0;
+				background-color: rgba(0,0,0,.5);
+			}
+			#zizic{
+				height: 200px;
+				text-align: center;
+				/*background-color:#008000;*/
+				color: red;
+				font-size: 50px;
+				margin-top:100px ;
+				/*display: ;*/
+			}
+			.ggg{
+				text-align: center;
+				margin: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sdfgh">
+			<div class="ggg">
+				默认人先手，<a href="javascript:bbbji()">电脑先手</a>
+			</div>
+			<canvas id="mycanv" width="450" height="450"></canvas>
+			
+		</div>
+            
+		<div id="zhecen">
+			<div id="zizic">
+				
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+					
+			var  zhecen = document.getElementById("zhecen");
+			var  zizic = document.getElementById("zizic");
+					
+			zhecen.style.display = "none" ;		
+			var zicii = ["你赢了","辣鸡，再来"],xdf = 0	;	
+					
+			function bbbji(){
+				
+				if(xdf){
+					xiaqi(7,7,false);
+					
+				}
+
+				xdf = 1;
+			}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+			var  mycanv = document.getElementById("mycanv");
+			var  xhre = mycanv.getContext("2d");
+			var  me = true;
+			var overr = false;
+			xhre.strokeStyle = "#00CED1"
+			
+//			xhre.moveTo(0,0);
+//			xhre.lineTo(450,450)
+//			
+//			xhre.stroke()
+           var winzhonglei = [];
+           var indedd = 0
+           for(var m=0;m<15;m++){
+			       winzhonglei[m] = [];				
+					for(var k=0;k<15;k++){
+			       winzhonglei[m][k] = [];
+//			       cunzaiqizi[m][k].wuwu =0 ;
+			  }
+			}
+           for(var m=0;m<15;m++){
+					for(var k=0;k<11;k++){
+			     	  for(var j = 0; j<5;j++){
+			           	winzhonglei[m][k+j][indedd] = true;
+			           }
+			           indedd +=1;
+			  }
+			}
+//         console.log(indedd);
+           for(var m=0;m<15;m++){
+					for(var k=0;k<11;k++){
+			     	  for(var j = 0; j<5;j++){
+			           	winzhonglei[k+j][m][indedd] =true;
+			           }
+			           indedd +=1;
+			  }
+			}
+//         console.log(indedd);
+           for(var m=0;m<11;m++){
+					for(var k=0;k<11;k++){
+			     	  for(var j = 0; j<5;j++){
+			           	winzhonglei[m+j][k+j][indedd] = true;
+			           }
+			           indedd +=1;
+			  }
+			}
+           
+           for(var m=0;m<11;m++){
+					for(var k=14;k>3;k--){
+			     	  for(var j = 0; j<5;j++){
+			           	winzhonglei[m+j][k-j][indedd] = true;
+			           }
+			           indedd +=1;
+			  }
+			}
+           
+// console.log(indedd);
+           
+           var mywin = [];
+           var computiwin = [];
+           
+           for(var i = 0 ;i<indedd ;i++){
+           		mywin[i] = 0;
+           		computiwin[i] = 0;
+           }
+           
+           
+           
+        /*   for(var m=0;m<15;m++){
+			       winzhonglei[m] = [];				
+					for(var k=0;k<11;k++){
+//			      	 winzhonglei[m][k] = [];
+			           for(var j = 0; j<5;j++){
+			           	winzhonglei[m][k+j] = []
+			           	winzhonglei[m][k+j][indedd] = 1;
+			           }
+			           indedd +=1;
+			           
+			  }
+
+					
+			}
+          console.log(indedd);
+
+   			for(var m=0;m<11;m++){
+					for(var k=0;k<15;k++){
+			           for(var j = 0; j<5;j++){
+			       		winzhonglei[m+j] = [];				
+			     	 	winzhonglei[m+j][k] = [];			           	
+			           	winzhonglei[m+j][k][indedd] = 1;			           	
+			           }
+			            indedd +=1;
+				 }			          					
+			}
+			console.log(indedd);
+			for(var m=0;m<11;m++){
+
+					for(var k=0;k<11;k++){
+			           for(var j = 0; j<5;j++){
+			    	   winzhonglei[m+j] = [];				
+			           	
+			     	 	winzhonglei[m+j][k+j] = [];			           	
+			           	winzhonglei[m+j][k+j][indedd] = 1;			           	
+			           }
+			            indedd +=1;
+				  }
+//			          
+//					
+			}
+			for(var m=0;m<11;m++){
+			       winzhonglei[m] = [];				
+					for(var k=14;k<3;k--){
+			           for(var j = 0; j<5;j++){
+			     	 	winzhonglei[m+j][k+j] = [];			           	
+			           	winzhonglei[m+j][k+j][indedd] = 1;			           	
+			           }
+			            indedd +=1;
+				  }
+			          
+					
+			}*/
+
+
+
+
+
+
+
+			var  cunzaiqizi = [];
+			for(var m=0;m<15;m++){
+			       cunzaiqizi[m] = [];				
+					for(var k=0;k<15;k++){
+			       cunzaiqizi[m][k] = [];
+			       cunzaiqizi[m][k].wuwu =0 ;
+			  }
+			}
+			
+//			console.log(cunzaiqizi[1][2]["wuwu"]);
+			for(var i=0;i<15;i++){
+				xhre.moveTo(15+30*i,15);
+				xhre.lineTo(15+30*i,450-15)
+				xhre.stroke()
+				
+				xhre.moveTo(15,15+30*i);
+				xhre.lineTo(450-15,15+30*i)
+				xhre.stroke()								
+			}
+			
+			
+			
+			
+			mycanv.onclick = luozi
+		
+			
+			/*function luozi(e){
+				
+				for(var i=0;i<15;i++){
+					for(var j=0;j<15;j++){
+					if(e.offsetX>15+i*30-15 &&e.offsetX<15+i*30+15&&e.offsetY>15+j*30-15 &&e.offsetY<15+j*30+15){
+						var grd = xhre.createRadialGradient(15+i*30+1, 15+j*30+1, 5, 15+i*30, 15+j*30, 0);
+						 console.log(i +":"+j )
+
+						 console.log(Math.floor(e.offsetX/30) +":"+Math.floor(e.offsetY/30))
+						 
+						if(cunzaiqizi[i][j].wuwu == 0){
+					            
+
+//                     console.log(cunzaiqizi[i][j])
+//                     console.log(i +"--" + j)
+						if(me){
+							grd.addColorStop(0, '#000');
+							grd.addColorStop(1, '#fff');
+			      			cunzaiqizi[i][j].wuwu = 1;
+							
+						}else{
+							grd.addColorStop(0, '#999');
+							grd.addColorStop(1, '#fff');
+			      			cunzaiqizi[i][j].wuwu = 2;
+							
+						}
+							
+							xhre.fillStyle = grd;
+			//				xhre.fill();
+						
+							xhre.beginPath();
+							xhre.arc(15+i*30,15+j*30,13,0,Math.PI*2,true);
+							xhre.closePath();  
+							xhre.fill();
+							me = !me;
+							
+						
+						}
+							}
+					
+					
+					}
+
+					
+				}
+				
+
+				
+				
+				console.log(e.offsetX)
+				console.log(e.offsetY)
+			}*/
+			
+			function computerA(){
+				var myfen = [];
+				var computerfen = [],u = 0 ,v = 0 ,max = 0;
+				
+				
+				for(var i = 0;i<15;i++){
+				      myfen[i] = [];
+				       computerfen[i] = [];
+						for(var k = 0;k<15;k++){
+						myfen[i][k] = 0;
+				       computerfen[i][k] = 0;												
+				      }
+				}
+				
+				
+				
+				for(var m = 0;m<15;m++){
+					for(var n = 0;n<15;n++){
+				      if(cunzaiqizi[m][n].wuwu == 0){
+				      	for(var i=0;i<indedd;i++){
+				       	    if(winzhonglei[m][n][i]){
+				       	    	  if(mywin[i] == 1){
+				       	    	  	myfen[m][n] += 50				       	    	  	
+				       	    	  }else if(mywin[i] == 2){
+				       	    	  	myfen[m][n] += 220
+				       	    	  }else if(mywin[i] == 3){
+				       	    	  	myfen[m][n] += 520
+				       	    	  }else if(mywin[i] == 4){
+				       	    	  	myfen[m][n] += 5000
+				       	    	  }  //if myfen
+				       	    	 if(computiwin[i] == 1){
+				       	    	  	computerfen[m][n] += 70				       	    	  	
+				       	    	  }else if(computiwin[i] == 2){
+				       	    	  	computerfen[m][n] += 250
+				       	    	  }else if(computiwin[i] == 3){
+				       	    	  	computerfen[m][n] += 550
+				       	    	  }else if(computiwin[i] == 4){
+				       	    	  	computerfen[m][n] += 10000
+				       	    	  }//if computfen				       	    			       	    	
+				       	    }   
+				     	  }	
+				     	if(myfen[m][n] > max) {
+								max = myfen[m][n];
+								u = m;
+								v = n;
+							} else if(myfen[m][n] == max) {
+								if(computerfen[m][n] > myfen[m][n]) {
+									max = computerfen[m][n];
+									u = m;
+									v = n;
+								}
+							}
+							if(computerfen[m][n] > max) {
+								max = computerfen[m][n];
+								u = m;
+								v = n;
+							} else if(computerfen[m][n] == max) {
+								if(myfen[m][n] > computerfen[m][n]) {
+									max = myfen[m][n];
+									u = m;
+									v = n;
+								}
+							}
+				      } //if
+				       
+				
+				
+				
+				
+							}
+					}//for 下
+				
+				xiaqi(u,v,false);
+             	for(var i =0 ;i<indedd; i++){
+             	 if(winzhonglei[u][v][i]){
+             	       computiwin[i] +=1;
+             	       mywin[i] =6 ;
+             	       
+             	       if(computiwin[i] == 5){
+             	       	zhecen.style.display = "block" ;
+             	       	zizic.innerText = zicii[1]
+//           	       	alert("太弱了")
+             	       	overr = true;
+             	       }
+            	 }
+             	
+             	
+             	
+            	 }
+             	if(!overr){
+					me = !me;
+					
+				}
+			}
+			
+			
+			function luozi(e){
+				console.log(1111)
+				if(overr){
+					return
+					console.log(1222)
+				}
+				console.log(1166)
+//				Math.floor()
+				var xzb = Math.floor(e.offsetX/30);
+				var yzb = Math.floor(e.offsetY/30);
+				console.log(xzb)
+				console.log(yzb)
+             if(cunzaiqizi[xzb][yzb].wuwu == 0){
+             	xiaqi(xzb,yzb,me);
+             	for(var i =0 ;i<indedd; i++){
+             	 if(winzhonglei[xzb][yzb][i]){
+             	       mywin[i] +=1;
+             	       computiwin[i] =6 ;
+             	       
+             	       if(mywin[i] == 5){
+             	       	zhecen.style.display = "block" ;
+             	       	zizic.innerText = zicii[0]
+//           	       	alert("你yinge")
+             	       	overr = true;
+             	       }
+            	 }
+             	
+             	
+             	
+             }
+             	if(!overr){
+					me = !me;
+					computerA()
+				}
+             }
+		
+			}
+			
+			
+			
+			
+			
+			
+			
+			function xiaqi(i,j,me){
+				console.log(666)
+				var jingxiangjianbian = xhre.createRadialGradient(15 + i * 30 + 2, 15 + j * 30 - 2, 13, 15 + i * 30 + 2, 15 + j * 30 - 2, 0)
+				
+				 if(me){
+				        jingxiangjianbian.addColorStop(0,'#0a0a0a');
+				        jingxiangjianbian.addColorStop(1,'#636766');
+				        cunzaiqizi[i][j].wuwu = 1
+				    }else{
+				        jingxiangjianbian.addColorStop(0,'#d1d1d1');
+				        jingxiangjianbian.addColorStop(1,'#f9f9f9');
+				        cunzaiqizi[i][j].wuwu = 2
+				    }
+				xhre.fillStyle = jingxiangjianbian;
+				
+				
+				xhre.beginPath();
+				xhre.arc(15 + i * 30 , 15 + j * 30 , 13,0,Math.PI*2,true)
+				xhre.fill();
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+//			var grd = context.createRadialGradient(x1, y1, radius1, x2, y2, radius2);
+//				grd.addColorStop(0, 'red');
+//				grd.addColorStop(1, 'blue');
+//				context.fillStyle = grd;
+//				context.fill();
+			
+//			var grd = xhre.createRadialGradient(20, 20, 2, 20, 20, 8);
+//				grd.addColorStop(0, '#fff');
+//				grd.addColorStop(1, '#000');
+//				xhre.fillStyle = grd;
+//				xhre.fill();
+//			
+//			xhre.beginPath();
+//			xhre.arc(20,20,10,0,Math.PI*2,true);
+//			xhre.closePath();  
+//			xhre.fill(); 
+			
+			
+			
+			
+			
+			
+			
+			
+//			for(var j=0; j<15;j++){
+//				for(var m=0; m<15;m++){
+//				var grd = xhre.createRadialGradient(15+m*30+1, 15+j*30+1, 2, 15+m*30, 15+j*30, 5);
+//				grd.addColorStop(0, '#fff');
+//				grd.addColorStop(1, '#000');
+//				xhre.fillStyle = grd;
+////				xhre.fill();
+//			
+//				xhre.beginPath();
+//				xhre.arc(15+m*30,15+j*30,15,0,Math.PI*2,true);
+//				xhre.closePath();  
+//				xhre.fill(); 
+//				
+//				
+//				}
+//				
+//			}
+//			
+			
+			
+		</script>
+	</body>
+</html>

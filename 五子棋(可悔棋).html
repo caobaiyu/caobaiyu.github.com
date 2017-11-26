@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>五子棋</title>
+		<style type="text/css">
+			main {
+				position: relative;
+				width: 1000px;
+				height: 850px;
+				/*text-align: center;*/
+				margin: 20px auto;
+				border: 1px solid;
+				padding-left: 50px;
+				background-color: floralwhite;
+			}
+			
+			body {
+				/*text-align: center;*/
+				color: whitesmoke;
+			}
+			
+			canvas {
+				position: absolute;
+				cursor: pointer;
+				background-color: orange;
+				margin: 40px auto;
+				box-shadow: 3px 3px 3px 2px black;
+				/*边框的六个值
+                1,阴影向右的偏移量(可以取负值),必选
+                2,阴影向下的偏移量(可以取负值),必选
+                3,阴影的虚化程度,可选
+                4,阴影延伸的宽度,可选
+                5,阴影的颜色(默认黑色),可选
+                6,阴影向外或向内(默认向外outset,向内扩展inset),可选*/
+			}
+			
+			.start-btn,.cancel-btn,.btn-parent {
+				margin-top: 50px;
+				width: 90px;
+				height: 37px;
+				color: white;
+				background-color: deepskyblue;
+				border-radius: 5px;
+				text-align: center;
+				cursor: pointer;
+				font-size: 22px;
+				display: block;
+				transition-duration: 0.2s;
+				transition-property: top color;
+				position: relative;
+			}
+			
+			#btn-container {
+				width: 200px;
+				height: 500px;
+				position: absolute;
+				right: 0px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<canvas id="canvas" width="780" height="780"></canvas>
+			<div id="btn-container">
+				<div class="btn-parent" style="background-color: dodgerblue;">
+					<div class="start-btn" onclick="restartGame()" style="top: -7px;">Restart</div>
+				</div>
+				<div class="btn-parent" style="background-color: dodgerblue;">
+					<div class="cancel-btn" onclick="cancelStep()" style="top: -7px;">悔棋</div>
+				</div>
+			</div>
+		</main>
+		<script type="text/javascript">
+			//取得canvas对象
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+			var startBtn = document.querySelector('.start-btn')
+			var cancelBtn =document.querySelector('.cancel-btn')
+				//默认黑棋先走
+			var me = true;
+
+			var over = false;
+
+			//棋牌上所有可以落子的点可以组成一个二维数组
+			var allPoint = [];
+
+			//棋盘上的点加第n种赢法组成三维数组 //allWins
+			var allWins = [];
+
+			//记录每步落字
+			var allStep = [];
+			var stepIndex = 0;
+			console.log(allStep)
+
+			//清空落字记录
+			function resetAllStep() {
+				allStep.splice(0, allStep.length)
+			}
+
+			//allWins是三维数组
+			for(var i = 0; i < 19; i++) {
+				allWins[i] = [];
+				for(var j = 0; j < 19; j++) {
+					allWins[i][j] = [];
+				}
+			}
+
+			//赢法置为true
+			function AllWinsReset() {
+				var count = 0; //第0种赢法
+				//allWins 纵向五个子的赢法
+				for(var i = 0; i < 19; i++) {
+					for(var j = 0; j < 15; j++) {
+						//allWins[0][0][0]= true ;解读 :  棋盘位置0,0 属于第0种赢法; 
+	         			//allWins[0][1][0]= true ;解读 :  棋盘位置0,1 属于第0种赢法;
+	         			//allWins[0][2][0]= true ;
+	         			//allWins[0][3][0]= true ;
+	         			//allWins[0][4][0]= true ;
+						for(var k = 0; k < 5; k++) {
+							allWins[i][j + k][count] = true;
+						}
+						count++;
+					}
+				}
+
+				//allWins横向赢法
+				for(var i = 0; i < 15; i++) {
+					for(var j = 0; j < 19; j++) {
+						for(var k = 0; k < 5; k++) {
+							allWins[i + k][j][count] = true;
+						}
+						count++;
+					}
+				}
+				console.log(count)
+					//allWins 正斜线
+
+				for(var i = 0; i < 15; i++) {
+					for(var j = 0; j < 15; j++) {
+						for(var k = 0; k < 5; k++) {
+							allWins[i + k][j + k][count] = true;
+						}
+						count++;
+					}
+				}
+
+				//allWins 反斜线
+
+				for(var i = 0; i < 15; i++) {
+					for(var j = 4; j < 19; j++) {
+						for(var k = 0; k < 5; k++) {
+							allWins[i + k][j - k][count] = true;
+						}
+						count++;
+					}
+				}
+			}
+
+			//我的赢法统计
+			var myWins = [];
+			//对方赢法统计
+			var computerWins = []
+
+			//双方赢法置零;
+			function BothWinsRest() {
+				for(var i = 0; i < 1020; i++) {
+					myWins[i] = 0;
+					computerWins[i] = 0;
+				}
+			}
+
+			//allPoint值0
+			function allPointReset() {
+				for(var i = 0; i < 19; i++) {
+					allPoint[i] = [];
+					for(var j = 0; j < 19; j++) {
+						allPoint[i][j] = 0;
+					}
+				}
+			}
+
+			//画出棋盘
+			function drawChessbord() {
+				for(var i = 0; i < 19; i++) {
+					context.strokeStyle = 'black';
+					context.lineWidth = 2;
+					context.beginPath();
+					context.moveTo(30 + i * 40, 30);
+					context.lineTo(30 + i * 40, 30 + 18 * 40);
+					context.closePath();
+					context.stroke();
+					context.beginPath();
+					context.moveTo(30, 30 + i * 40);
+					context.lineTo(30 + 18 * 40, 30 + i * 40);
+					context.closePath();
+					context.stroke();
+				}
+			}
+
+			//画棋子(Black or White)
+			function drawChessPieces(x, y, me) {
+				context.beginPath();
+				context.arc(30 + x * 40, 30 + y * 40, 17, 0, 2 * Math.PI, false);
+				context.closePath();
+				if(me) {
+					//定义渐变
+					var temp = context.createRadialGradient(34 + x * 40, 28 + y * 40, 1, 30 + x * 40, 30 + y * 40, 17);
+					temp.addColorStop(0, '#636766');
+					temp.addColorStop(1, 'black');
+
+				} else {
+					var temp = context.createRadialGradient(34 + x * 40, 28 + y * 40, 1, 30 + x * 40, 30 + y * 40, 17);
+					temp.addColorStop(0, 'white');
+					temp.addColorStop(0.8, 'white');
+					temp.addColorStop(1, 'gray');
+				}
+				context.fillStyle = temp;
+				context.fill();
+			}
+			
+			//鼠标移动选择时的样式
+			function chooseMark(i,j,color){
+				context.strokeStyle =color;
+				context.lineWidth= 2;
+				context.beginPath();
+				//上双横线
+				context.moveTo(38 + i * 40,10 + j * 40);
+				context.lineTo(50 + i * 40 ,10+ j * 40);
+				context.moveTo(10 + i * 40,10 + j * 40);
+				context.lineTo(22 + i * 40 ,10+ j * 40);
+				//下双横线
+				context.moveTo(38 + i * 40,50 + j * 40);
+				context.lineTo(50 + i * 40 ,50+ j * 40);
+				context.moveTo(10 + i * 40,50 + j * 40);
+				context.lineTo(22 + i * 40 ,50+ j * 40);
+				//左双竖线
+				context.moveTo(10 + i * 40,10 + j * 40);
+				context.lineTo(10 + i * 40 ,22+ j * 40);
+				context.moveTo(10 + i * 40,38 + j * 40);
+				context.lineTo(10 + i * 40 ,50+ j * 40);
+				//右双竖线
+				context.moveTo(50 + i * 40,10 + j * 40);
+				context.lineTo(50 + i * 40 ,22+ j * 40);
+				context.moveTo(50 + i * 40,38+ j * 40 );
+				context.lineTo(50 + i * 40 ,50+ j * 40);
+				context.closePath();
+				context.stroke();
+			}
+
+			//点击棋盘
+			canvas.onclick = function(e) {
+				console.log('me:' + me)
+				console.log('over:' + over)
+				if(!me) {
+					return
+				}
+				if(over) {
+					return
+				}
+				//获取点击坐标
+				var x = Math.floor((e.offsetX-10)/40);
+				var y = Math.floor((e.offsetY-10) / 40);
+				//在边框边缘10px以内的地方点击无效
+				if(x< 0 || y < 0){
+					return;
+				}
+				if(allPoint[x][y] == 0) {
+					allPoint[x][y] = 1;
+					allStep[stepIndex] = {
+						x: x,
+						y: y,
+						me: true
+					}
+					console.log(allStep[stepIndex])
+					stepIndex++
+					drawChessPieces(x, y, me);
+
+					for(k = 0; k < 1020; k++) {
+						if(allWins[x][y][k]) {
+							myWins[k]++;
+							computerWins[k] += 6;
+							if(myWins[k] == 5) {
+								over = true;
+								alert('你赢了');
+							}
+						}
+
+					}
+					//未结束
+					if(!over) {
+						me = false;
+						computerAI();
+					}
+				}
+			}
+			
+			//选择位置
+			//鼠标在棋盘上移动的时候会显示标记框
+			var lastX = 0 ,lastY = 0;
+			canvas.onmousemove = function(e){
+				console.log(e.offsetX)
+				
+				var x = Math.floor((e.offsetX-10)/40);
+				var y = Math.floor((e.offsetY-10) / 40);
+				//在边框边缘10px以内的地方移动无效
+				if(x< 0 || y < 0 || x>18 || y >18){
+					return;
+				}
+				console.log(x)
+				//每次绘制红色标志框之前,都在每一个落字点绘制黄色的的标志框,也就是覆盖可能存在的红色标志框
+//				for(var i = 0; i < 19 ; i++){
+//					for(var j = 0; j < 19 ;j++){
+//						chooseMark(i,j,'orange');
+//					}
+//				}
+				chooseMark(lastX,lastY,'orange');
+				chooseMark(x,y,'red');
+				lastX =x;
+				lastY = y;
+			}
+
+			//让鼠标离开棋盘时,棋盘不存在红色标记框
+			canvas.onmouseleave = function(){
+				for(var i = 0; i < 19 ; i++){
+					for(var j = 0; j < 19 ;j++){
+						chooseMark(i,j,'orange');
+					}
+				}
+			}
+			
+			//电脑落子算法
+			function computerAI() {
+				var myScore = [];
+				var computerScore = [];
+				var max = 0;
+				var u = 0;
+				var v = 0;
+				//myScore和computerScore是二维数组,两个索引值组成棋牌上的一个点,数组中的值代表此点落子的价值评分
+				for(var i = 0; i < 19; i++) {
+					myScore[i] = [];
+					computerScore[i] = [];
+					for(var j = 0; j < 19; j++) {
+						myScore[i][j] = 0;
+						computerScore[i][j] = 0;
+					}
+				}
+				//遍历所有点
+				for(var i = 0; i < 19; i++) {
+					for(var j = 0; j < 19; j++) {
+						//找到未落子点
+						if(allPoint[i][j] == 0) {
+							for(var k = 0; k < 1020; k++) {
+								//可落子点评分(评分越高价值越大)
+								if(allWins[i][j][k] == true) {
+									if(myWins[k] == 1) {
+										myScore[i][j] += 50;
+									} else if(myWins[k] == 2) {
+										myScore[i][j] += 220;
+									} else if(myWins[k] == 3) {
+										myScore[i][j] += 520;
+									} else if(myWins[k] == 4) {
+										myScore[i][j] += 5000;
+									}
+
+									if(computerWins[k] == 1) {
+										computerScore[i][j] += 70;
+									} else if(computerWins[k] == 2) {
+										computerScore[i][j] += 250;
+									} else if(computerWins[k] == 3) {
+										computerScore[i][j] += 550;
+									} else if(computerWins[k] == 4) {
+										computerScore[i][j] += 10000;
+									}
+								}
+
+							}
+							//得到评分最高点的坐标
+							if(myScore[i][j] > max) {
+								max = myScore[i][j];
+								u = i;
+								v = j;
+							} else if(myScore[i][j] == max) {
+								if(computerScore[i][j] > myScore[u][v]) {
+									max = computerScore[i][j];
+									u = i;
+									v = j;
+								}
+							}
+							if(computerScore[i][j] > max) {
+								max = computerScore[i][j];
+								u = i;
+								v = j;
+							} else if(computerScore[i][j] == max) {
+								if(myScore[i][j] > computerScore[u][v]) {
+									max = myScore[i][j];
+									u = i;
+									v = j;
+								}
+							}
+						}
+					}
+				}
+				allPoint[u][v] = 2;
+				console.log(u + '!' + v)
+				console.log(max)
+				allStep[stepIndex] = {
+					x: u,
+					y: v,
+					me: false
+				}
+				console.log(allStep[stepIndex])
+				console.log(stepIndex)
+				stepIndex++
+				drawChessPieces(u, v, false);
+				for(k = 0; k < 1020; k++) {
+					if(allWins[u][v][k]) {
+						computerWins[k]++;
+						myWins[k] += 6;
+						if(computerWins[k] == 5) {
+							over = true;
+							alert('辣鸡,扑街');
+						}
+					}
+
+				}
+				if(!over) {
+					me = true;
+				}
+			}
+
+			//悔棋逻辑
+
+			function cancelStep() {
+				//只有有棋可删且,不是在玩家已获胜的情况下才能悔棋
+				console.log(allStep.length);
+				if(allStep.length<1){
+					return;
+				}
+				if(allStep[allStep.length-1].me){
+					console.log('你赢了')
+					alert('你赢了,请重新开始');
+					return;
+				}
+				var temp =allStep.pop();
+				var myStep = allStep.pop();
+				var computerStep = temp ;
+				stepIndex--;
+				stepIndex--;
+				console.dir(allStep);
+				console.log(stepIndex);
+//				if(computerStep.me)
+				if(computerStep){
+					allPoint[computerStep.x][computerStep.y] = 0;
+					allPoint[myStep.x][myStep.y] = 0;
+					for(k = 0; k < 1020; k++) {
+						if(allWins[myStep.x][myStep.y][k]) {
+							myWins[k]--;
+							computerWins[k] -= 6;
+						}
+						if(allWins[computerStep.x][computerStep.y][k]) {
+							computerWins[k]--;
+							myWins[k] -= 6;
+						}
+
+					}
+					context.clearRect(0, 0, 780, 780);
+					drawChessbord();
+					for(var i =0;i<19; i++){
+						for(var j=0;j<19;j++){
+							if(allPoint[i][j]==1){
+								drawChessPieces(i,j,true);
+							}
+							if(allPoint[i][j]==2){
+								drawChessPieces(i,j,false);
+							}
+						}
+					}
+					over =false;
+					me =true;
+				}
+			}
+
+			//重新开始
+			function restartGame() {
+				//清除棋盘
+				console.log('重新开始');
+				context.clearRect(0, 0, 780, 780);
+				initializationGame();
+			}
+			
+			startBtn.onmousedown =function(){
+				startBtn.style.color ='red';
+				startBtn.style.top='-3px';
+//				startBtn.style.boxShadow = '0px '+ '2px '+ '1px '+ 'dodgerblue';
+			}
+			window.onmouseup =function (){
+				startBtn.style.color ='white';
+				startBtn.style.top='-7px';
+				cancelBtn.style.color ='white';
+				cancelBtn.style.top='-7px';
+			}
+			
+			cancelBtn.onmousedown =function(){
+				cancelBtn.style.color ='red';
+				cancelBtn.style.top='-3px';
+//				startBtn.style.boxShadow = '0px '+ '2px '+ '1px '+ 'dodgerblue';
+			}
+			
+			//初始化
+			function initializationGame() {
+				//画棋盘
+				drawChessbord();
+				//allPoint置0
+				allPointReset();
+
+				//赢法置0
+				AllWinsReset();
+					//双方赢法置0
+				BothWinsRest();
+				over = false;
+				me = true;
+				alert('游戏开始,你执黑棋!');
+			}
+			window.onload = function(){
+				initializationGame();
+			}
+			console.log(startBtn.onclick);
+		</script>
+	</body>
+
+</html>
