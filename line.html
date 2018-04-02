@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.main{width: 600px;height: 200px;margin-left: 100px;margin-top:100px;border-left: 1px solid black;border-bottom:1px solid black ;border-right: none;border-top: none;position: relative;}
+			.main::before{content: " ";display: block;width: 0;height: 0;border-width:20px 5px ;border-style: solid;border-color: transparent transparent blue transparent;position: absolute;top: -40px;left: -5px;}
+			.main::after{content: " ";display: block;width: 0;height: 0;border-width:5px 20px ;border-style: solid;border-color: transparent transparent transparent blue;position: absolute;bottom: -5px;right: -40px;}
+			.num{margin-left: 100px;margin-top:10px}
+			/*.num input{width: 60px;height: 18px;}*/
+			.num button{cursor: pointer;font-size: 6px;padding: 2px;border: 1px solid red;background-color: blue;color: #fff;}
+			.yuan{width: 0;height: 0;border: 2px solid red;border-radius: 3px;}
+			.xian{height: 0;border: 1px solid blue;position:absolute;}
+			
+			.tab{margin-left: 100px;margin-top:100px;}
+			/*table tr{border: 1px solid blue;padding: 1px;}*/
+			.tab th ,.tab td {width: 50px;height: 20px;}
+			.tab td{color: red;cursor: pointer;}
+			input{outline: none;width: 50px;height: 20px;text-align: center;}
+			#xiantiao{width: 100px;height: 0;border: 1px solid yellowgreen;position: absolute;bottom: -10px;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="main">
+			<div id = "xiantiao"></div>
+		</div>
+		
+		<table border="1" cellspacing="0" cellpadding="0" class="tab">
+			<tr>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+				<th>4</th>
+				<th>5</th>
+				<th>+</th>
+			</tr>
+			<tr>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+			</tr>
+			<tr>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+				<td><input type="text" value="" /></td>
+			</tr>
+		</table>
+		<div class="num">
+			<!--<input type="text" name="nun" id="nun" value="" />-->
+			<button>完成</button>
+		</div>
+		<!--<div class="yuan"></div>-->
+		<script type="text/javascript">
+			var main = document.getElementsByClassName('main')[0];
+			var le = 0, bom = 0, ml = '' ,nun = '',ddd = '';
+			var bbb = document.getElementsByTagName("button")[0] ;
+//			var xiantiao = document.getElementById("xiantiao");
+			
+			
+			
+//			console.log(nun)
+			
+			bbb.onclick = function(){
+//				console.log(ccc.childNodes)
+				var ccc = document.getElementsByClassName("tab")[0] ;
+				var ddd1 = ccc.getElementsByTagName("tr")[1].getElementsByTagName("td") ;
+				ddd = ccc.getElementsByTagName("tr")[2].getElementsByTagName("td") ;
+				var fff = ddd.length -0 ,arr =[],lll = '',zzc = '' , zzzc = '';
+				le = 600/fff + 0 ; 
+//				zzc = '<td>'+  +'</td>'
+				for(var i = 0 ; i <fff; i++){
+					var zxc = ddd[i].getElementsByTagName("input")[0].value -0;
+					var zxc1 = ddd1[i].getElementsByTagName("input")[0].value;
+					console.log(zxc1)
+					zzc  += '<td style = "width :'+ le +'px;height:20px;font-size:20px;text-align: center;">'+ zxc1 +'</td>'
+					console.log(zzc)
+					bom = zxc
+					arr.push(zxc)
+
+					if(i === 0){
+						lll = '';
+					}else{
+						var hhhy = Math.abs(arr[i] - arr[i-1]) ,hhy = hhhy/2 ;
+						var tt = "transform:rotate("+ dd(le,arr[i],arr[i-1]).du +"deg) scale("+ dd(le,arr[i],arr[i-1]).qd +");"
+						if(arr[i] > arr[i-1]){
+							lll = '<div class = "xian" style="width:'+le+'px;left:'+ le*i +'px;bottom:'+ (arr[i-1] + hhy ) +'px;'+ jj(tt) +'"></div>'
+							
+						}else{
+							lll = '<div class = "xian" style="width:'+le+'px;left:'+ le*i +'px;bottom:'+ (arr[i-1] - hhy )+'px;'+ jj(tt) +'"></div>'
+							
+						}
+
+						
+					}
+
+					ml += '<div class = "yuan" style="position:absolute;left:'+(le*(i+1)-2) +'px;bottom:'+ (bom-1.5 )+'px;"></div>' + lll
+					
+				}
+					zzzc = '<table border="0" cellspacing="0" cellpadding="0" style = "position:absolute;left:'+ (le/2)+'px;bottom:-30px"><tr>'+ zzc +'</tr></table>'
+				
+//					console.log(ml)
+					main.innerHTML = ml + zzzc ;
+				
+			}
+			
+
+			
+			
+			
+//			js缩放兼容
+			var jj = function(cc){
+				var arr = ["-o-","-moz-","-webkit-"],al = arr.length ,vv = cc;
+				for(var i = 0; i<al; i++){
+					vv += arr[i] + cc
+				}
+				return vv;
+			}
+//			画斜线方法
+			var dd = function(bt,rr1,rr2){
+				var ag = {}
+//				var bt = btb.offsetWidth
+			
+				if(rr1 > rr2){
+					var rr = rr1 - rr2 ;
+					var hu = Math.atan(rr/bt);
+					ag.du = "-"+Math.floor(180/(Math.PI/hu));
+				}else{
+					var rr = rr2 - rr1 ;
+					var hu = Math.atan(rr/bt);
+					ag.du = Math.floor(180/(Math.PI/hu));
+				}
+				var qw = Math.abs(rr2 - rr1) ,
+					qe = Math.pow(bt,2) ,
+					qr = Math.pow(qw,2) ,
+					qt = Math.sqrt(qe + qr) ;
+					ag.qd = qt/bt ;
+				
+				return ag;
+			}
+
+		</script>
+	</body>
+</html>
