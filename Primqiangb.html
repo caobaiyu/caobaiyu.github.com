@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #cav {
+            /* background-color: #333; */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            width: 1200px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nandu {
+            position: relative;
+            left: 70%;
+            top: -35px;
+            width: 200px;
+
+        }
+
+        .btn {
+            width: 100px;
+            text-align: center;
+            line-height: 100%;
+            padding: 0.3em;
+            font: 16px Arial, sans-serif bold;
+            font-style: normal;
+            text-decoration: none;
+            vertical-align: text-bottom;
+            zoom: 1;
+            outline: none;
+            font-size-adjust: none;
+            font-stretch: normal;
+            border-radius: 50px;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            color: #fefee9;
+            border: 0.2px solid #2299ff;
+            background-repeat: repeat;
+            background-size: auto;
+            background-origin: padding-box;
+            background-clip: padding-box;
+            background-color: #3399ff;
+            background: linear-gradient(to bottom, #eeeff9 0%, #3399ff 100%);
+            cursor: pointer;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>迷宫好难啊</h1>
+
+        <div class="nandu">
+            <select id="sele">
+                <option value="easy">简单</option>
+                <option value="min" selected>中级</option>
+                <option value="minad" >复杂</option>
+                <option value="maxx">超难</option>
+            </select>
+            <button class="btn" onclick="finl()">我要抄答案</button>
+        </div>
+        <canvas width="1000" height="700" id="cav"> 不支持</canvas>
+
+    </div>
+
+
+    <script>
+        let xianarr = [];
+        let canvas = document.getElementById("cav");
+        let ctx = canvas.getContext("2d");
+        let xids = 0
+        let sele = document.getElementById("sele");
+      
+
+        sele.addEventListener("change", (e) => {
+            let eta = e.target;
+            let eval = eta.value;
+            if (eval == "easy") {
+                xids = 0
+                xianarr = mg_cav(15, 15)
+            } else if (eval == "min") {
+                xids = 0
+                xianarr = mg_cav(20, 30)
+            } else if (eval == "minad") {
+                xids = 0
+                xianarr = mg_cav(40, 30)
+            } else if (eval == "maxx") {
+                xids = 0
+                xianarr = mg_cav(50, 40)
+            }
+
+        })
+        xianarr = mg_cav(20, 30)
+
+        function finl() {
+            console.log(5888)
+            chlsz(xianarr[0], xianarr[1], xianarr[2])
+        }
+
+        function init_arr(x, y) {
+            let iind = 0
+            let objj = {
+                lianY: [],
+                bcj: [],
+                x: x,
+                y: y
+            }
+            for (let i = 0; i < y; i++) {
+                let iii = i
+                objj.lianY[iii] = [];
+                for (let m = 0; m < x; m++) {
+                    iind = iii + m * y
+                    objj.lianY[i][m] = [1, 1];
+                    objj.bcj[iind] = iind
+                    // bcj_rot[iind] = -1
+                }
+            }
+            console.log(objj.bcj)
+            console.log(objj.lianY)
+            console.log(objj)
+            return objj
+        }
+
+
+
+
+
+
+
+
+        function linarr(x, y) {
+            let int = init_arr(x, y);
+            let b_ar = int.bcj;
+            let zs = b_ar.length - 1;
+
+            let iight = 0;
+
+            while (find_rt(0, b_ar) != find_rt(zs, b_ar)) {
+                // 随机选边
+                next_fio(x, y, int.lianY, b_ar, zs)
+                iight += 1;
+                if (iight > 5000) {
+                    console.log("cuo")
+                    console.log(int.lianY)
+                    console.log(b_ar)
+                    return int.lianY
+                }
+            }
+            console.log(b_ar)
+            // return int.lianY
+            return {
+                lianY: int.lianY,
+                bcj: b_ar
+            }
+
+        }
+
+        function next_fio(x, y, lianY, bar, zs) {
+            let rnd = parseInt(Math.random() * zs)
+
+            let arr = next_arr(rnd, x, y)
+
+            let aelen = arr.length;
+            let newar = [];
+            if (aelen > 0) {
+                for (let i = 0; i < aelen; i++) {
+                    let ymy = line_arr(rnd, arr[i], x);
+                    if (ymy) {
+                        if (lianY[ymy[0]][ymy[1]][ymy[2]]) {
+                            newar.push(arr[i])
+                        }
+                    }
+
+                }
+                if (newar.length > 0) {
+                    let ll_pr = newar[parseInt(Math.random() * (newar.length))]
+                    if (find_rt(ll_pr, bar) !== find_rt(rnd, bar)) {
+                        let ymu = line_arr(rnd, ll_pr, x);
+                        if (ymu) {
+                            lianY[ymu[0]][ymu[1]][ymu[2]] = 0;
+                            bar[find_rt(ll_pr, bar)] = bar[find_rt(rnd, bar)]
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        function next_arr(rnd, x, y) {
+            let arr = []
+            let row = parseInt(rnd / x);
+            let lie = parseInt(rnd % x);
+            if (row > 0) {
+                arr.push(rnd - x)
+            }
+            if (lie > 0) {
+                arr.push(rnd - 1)
+            }
+            if (row < (y - 1)) {
+                arr.push(rnd + x)
+            }
+            if (lie < (x - 1)) {
+                arr.push(rnd + 1)
+            }
+            return arr
+        }
+
+
+        function find_rt(num, arr) {
+            if (arr[num] !== num) {
+                return find_rt(arr[num], arr)
+            } else {
+                return num
+            }
+        }
+
+        function line_arr(k, l, x) {
+            let chaz = k - l;
+            let cz_zh = Math.abs(chaz)
+            let row_k = parseInt(k / x);
+            let lie_k = parseInt(k % x);
+            let row_l = parseInt(l / x);
+            let lie_l = parseInt(l % x);
+            if (chaz > 0) {
+                if (cz_zh == 1) {
+                    return [row_l, lie_l, 0]
+                    // return  lianY[row_l][lie_l][0]
+                    // lianY[row_l][lie_l] = [0, 1]
+                } else {
+                    return [row_l, lie_l, 1]
+                    // return  lianY[row_l][lie_l][1]
+                    // lianY[row_l][lie_l] = [1, 0]
+                }
+            } else {
+                if (cz_zh == 1) {
+                    return [row_k, lie_k, 0]
+                    // return  lianY[row_k][lie_k][0]
+                    // lianY[row_k][lie_k] = [0, 1]
+                } else {
+                    return [row_k, lie_k, 1]
+                    // return  lianY[row_k][lie_k][1]
+                    // lianY[row_k][lie_k] = [1, 0]
+                }
+            }
+        }
+
+
+        function mg_cav(x, y) {
+            canvas.width = 20 + x * 21
+            canvas.height = 20 + y * 21
+            ctx.clearRect(0, 0, 20 + x * 21, 20 + y * 21);
+            let dfe = linarr(x, y)
+            console.log(dfe)
+            lin_cav(dfe.lianY, x, y)
+            zol(x, y, dfe.lianY)
+            run_m(0, x, 21)
+            // fin_lx(x, y, dfe.lianY)
+            return [x, y, dfe.lianY]
+            // fin_lx(dfe.bcj ,x )
+        }
+
+
+
+
+
+
+        function lin_cav(ar, x, y) {
+            ctx.strokeStyle = 'rgb(255,51,0)'
+            ctx.lineWidth = 1
+            let kuan = 20;
+            let kjk = 21
+            // 以10，10为零点开始画
+            ctx.beginPath();
+            
+            ctx.moveTo(10 + kjk * x, 10);
+            ctx.lineTo(10, 10);
+            ctx.lineTo(10, 10 + kjk * y);
+            // ctx.lineTo(10 + kjk * x, 10 + kjk * y);
+            // ctx.lineTo(10 + kjk * x, 10);
+
+            // ctx.lineTo(800, 10);
+            // console.log(kjk * y)
+            ctx.stroke();
+            let alastar = ar.length - 1 ;
+            let arlalen = ar[alastar].length - 1 ;
+            console.log(alastar)
+            console.log(arlalen)
+            console.log(ar[alastar])
+            ar[alastar][arlalen] = [0,1]
+            ar.forEach((a, b) => {
+                a.forEach((m, n) => {
+                    let lly = 10 + kjk * b;
+                    let llx = 10 + kjk * n;
+                    let lrr = m[0];
+                    let lbb = m[1];
+                    // ctx.strokeStyle = '#fff'
+                    ctx.beginPath();
+                    if (lrr) {
+                        ctx.moveTo(llx + kjk, lly);
+                        ctx.lineTo(llx + kjk, lly + kjk);
+                    }
+                    if (lbb) {
+                        ctx.moveTo(llx, lly + kjk);
+                        ctx.lineTo(llx + kjk, lly + kjk);
+                    }
+                    ctx.stroke();
+                })
+            })
+        }
+
+
+        function run_m(num, x, kjk, jg = 6, col = "blue") {
+            let kuan = kjk - jg;
+            let row_k = parseInt(num / x);
+            let lie_k = parseInt(num % x);
+            let lly = 10 + kjk * row_k + jg / 2;
+            let llx = 10 + kjk * lie_k + jg / 2;
+            ctx.fillStyle = col;
+            ctx.fillRect(llx, lly, kuan, kuan);
+        }
+
+        function cle_run_m(num, x, kjk, jg = 4) {
+            let kuan = kjk - jg;
+            let row_k = parseInt(num / x);
+            let lie_k = parseInt(num % x);
+            let lly = 10 + kjk * row_k + jg / 2;
+            let llx = 10 + kjk * lie_k + jg / 2;
+            // ctx.fillStyle = 'blue';
+            ctx.clearRect(llx, lly, kuan, kuan);
+        }
+
+
+        function zol(x, y, art) {
+            document.onkeydown = function (event) {
+                var e = event || window.event || arguments.callee.caller.arguments[0];
+                e.preventDefault()
+                if (e && e.keyCode == 37) { // 左 xids
+                    let xzs = xids - 1;
+                    pdhx(xzs, art, x, y)
+
+                }
+                if (e && e.keyCode == 38) { // 上
+                    let xzs = xids - x;
+                    pdhx(xzs, art, x, y)
+                }
+                if (e && e.keyCode == 39) { // 右
+                    let xzs = xids + 1;
+                    pdhx(xzs, art, x, y)
+                }
+                if (e && e.keyCode == 40) { // 下
+                    let xzs = xids + x;
+                    pdhx(xzs, art, x, y)
+                }
+
+            };
+        }
+
+
+        function pdhx(xzs, art, x, y) {
+            let zzs = x * y
+            if (xzs >= 0 && xzs < zzs) {
+                let xmyx = line_arr(xids, xzs, x)
+                if (!art[xmyx[0]][xmyx[1]][xmyx[2]]) {
+                    cle_run_m(xids, x, 21)
+                    run_m(xzs, x, 21)
+                    xids = xzs
+                }
+            }
+        }
+
+
+        function fin_lx(x, y, lanar) {
+            let zzdw = x * y;
+            let zzsarr = [];
+            for (let i = 0; i < zzdw; i++) {
+                zzsarr.push(i)
+            }
+            let reququ = [];
+            let cfququ = [];
+            let retuobj = {}
+            cfququ.push(zzsarr[0])
+            reququ.push(zzsarr[0])
+            retuobj[0] = "none";
+            while (cfququ.length !== 0) {
+                let ppin = cfququ.pop();
+                let arr = next_arr(ppin, x, y); //line_arr(k, l, x)
+                let newarr = [];
+                if (arr.length > 0) {
+                    arr.forEach((a, b) => {
+                        let xxd = line_arr(ppin, a, x)
+                        if (!lanar[xxd[0]][xxd[1]][xxd[2]]) {
+                            newarr.push(a)
+                        }
+                    })
+                    let llln = newarr.length;
+                    if (llln > 0) {
+                        for (let kk = 0; kk < llln; kk++) {
+                            if (!reququ.includes(newarr[kk])) {
+                                cfququ.push(newarr[kk]);
+                                reququ.push(newarr[kk]);
+                                retuobj[newarr[kk]] = ppin
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+            console.log(retuobj)
+            return retuobj
+        }
+
+        function chlsz(x, y, lanar) {
+            let oobj = fin_lx(x, y, lanar)
+            let zzs = x * y - 1;
+            let bbh = zzs;
+            let xsz = [];
+            while (oobj[bbh] !== "none") {
+                bbh = oobj[bbh]
+                run_m(bbh, x, 21, 8, "#DA70D6")
+                xsz.push(bbh)
+            }
+            console.log(xsz)
+            return (xsz)
+        }
+    </script>
+</body>
+
+</html>
