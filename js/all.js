@@ -23,31 +23,6 @@ typing()
 
 
 
-// jQuery('.skillbar').each(function() {
-//   jQuery(this).appear(function() {
-//     jQuery(this).find('.count-bar').animate({
-//       width:jQuery(this).attr('data-percent')
-//     },3000);
-//     var percent = jQuery(this).attr('data-percent');
-//     jQuery(this).find('.count').html('<span>' + percent + '</span>');
-//   });
-// }); 
-
-let skillbar = document.getElementsByClassName("skillbar")
-
-
-
-makeArray(skillbar).forEach( (a,b) => {
-  a.addEventListener("mouseover",(e)=>{
-    console.log(e.target)
-  })
-});
-
-
-
-
-
-
 function makeArray(obj) {
   var rs = [],
     len = obj.length;
@@ -60,3 +35,9 @@ function makeArray(obj) {
   }
   return rs;
 }
+
+
+
+var hhu = `
+没想到适配也这么烦！`
+console.log("%c" + hhu ,'color:red;font-size:50px')
