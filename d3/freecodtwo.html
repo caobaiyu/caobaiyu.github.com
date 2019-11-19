@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <title>散点图</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #666666;
+        }
+
+        .box {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 800px;
+            background-color: #fff;
+            padding: 30px;
+            margin: 50px auto;
+            box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                0 0 0 2px rgb(255, 255, 255),
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .rectt {
+            fill: #33adff;
+            opacity: .9;
+        }
+
+        #sbx {
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 150px;
+            height: 50px;
+            padding: 2px;
+            font: 12px;
+            background: lightsteelblue;
+            box-shadow: 1px 1px 10px;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>不知道是什么东西</h1>
+        <div id="sbx"></div>
+    </div>
+
+
+
+    <script>
+        // let datagdp = localStorage.getItem("tianq")
+        // let datobj = JSON.parse(datagdp);
+        if(localStorage.getItem("tianq")) {
+            let datobj = JSON.parse(localStorage.getItem("tianq"))
+            // datar = datobj.data
+            drr(datobj) 
+        } else {
+            let uurl = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
+            send(uurl, "tianq" , drr)
+        }
+
+
+        function drr(datobj){
+            let ssvgyssj = {
+            width: 900,
+            height: 600,
+            padleft: 50,
+            padright: 50,
+            padtop: 50,
+            padbotm: 50
+        }
+
+        //创建svg
+        let ssvgdom = d3.select("#sbx").append("svg")
+            .attr("width", ssvgyssj.width)
+            .attr("height", ssvgyssj.height)
+
+
+
+        let yyscal = d3.scaleLinear().domain([d3.min(datobj,(d)=> datnum(d.Time) ),d3.max(datobj,(d)=> datnum(d.Time) )])
+                     .range([ssvgyssj.height - ssvgyssj.padbotm, ssvgyssj.padtop])
+
+        let xxscal = d3.scaleLinear().domain([d3.min(datobj,(d)=>d.Year)-1,d3.max(datobj,(d)=>d.Year)+1])
+                    .range([ssvgyssj.padleft, ssvgyssj.width - ssvgyssj.padright])
+
+
+
+
+        let circll = ssvgdom.selectAll("circle").data(datobj)
+                     .enter().append("circle").attr("class", "rectt")
+                     .attr("r",5)
+                     .attr("cx",(d)=>xxscal(d.Year)).attr("cy",(d)=> (ssvgyssj.height - yyscal(datnum(d.Time))))
+
+
+
+
+        let xxaxi = d3.axisBottom(xxscal).ticks(11).tickFormat((d,i)=>d)
+        ssvgdom.append("g").attr("transform", "translate(0," + (ssvgyssj.height - ssvgyssj.padbotm) + ")").call(
+            xxaxi)
+
+                let yybls = d3.axisLeft(yyscal).tickFormat((d,i)=>(datobj[i].Time))
+            ssvgdom.append("g").attr("transform", "translate(" + ssvgyssj.padleft + ",0)").call(yybls)
+
+
+        }
+
+        
+
+
+        function datnum(str) {
+            let sssr = str.replace(":",".")
+            let p = d3.precisionFixed(0.01),
+                f = d3.format("." + p + "f")
+            return f(sssr)
+        }
+
+
+        function send(url, str ,calk) {
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", url, true);
+            xmlHttp.send(null);
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    localStorage.setItem(str, xmlHttp.response);
+                    let datobj = JSON.parse(xmlHttp.response)
+                    // datobj = datobj.data
+                    calk(datobj)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

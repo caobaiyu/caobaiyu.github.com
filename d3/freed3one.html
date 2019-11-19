@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #666666;
+        }
+
+        .box {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 800px;
+            background-color: #fff;
+            padding: 30px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .rectt {
+            fill: #33adff;
+            opacity: .9;
+        }
+
+        .rectt:hover {
+            opacity: .2;
+        }
+
+        #sbx {
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 150px;
+            height: 50px;
+            padding: 2px;
+            font: 12px;
+            background: lightsteelblue;
+            box-shadow: 1px 1px 10px;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+    </style>
+    <title>条形图</title>
+</head>
+
+<body>
+    <div class="box">
+        <h1>United States GDP</h1>
+        <div id="sbx"></div>
+    </div>
+
+
+
+
+    <script>
+        try {
+            let datobj = JSON.parse(localStorage.getItem("GDP1"))
+            let datar = datobj.data
+            ddra(datar)
+        } catch (error) {
+            let uurl = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json'
+            send(uurl, "GDP1", ddra)
+        }
+
+
+        // let datagdp = localStorage.getItem("GDP1")
+        // let datobj = JSON.parse(datagdp);
+        // let datar = datobj.data;
+        // let formatYear = d3.timeFormat("%Y");
+        // let formatYear = d3.time.format("%Y-%m-%d").parse
+        // parse(%Y-%m-%d)
+        // console.log(datar[1][0].split('-'))
+
+        function ddra(datar) {
+            let ssvgyssj = {
+                width: 900,
+                height: 600,
+                padleft: 50,
+                padright: 50,
+                padtop: 50,
+                padbotm: 50
+            }
+
+            // let rractl = Math.floor((ssvgyssj.width-ssvgyssj.padleft-ssvgyssj.padright)/parseInt(datar.length))
+            let rractl = (ssvgyssj.width - ssvgyssj.padleft - ssvgyssj.padright) / parseInt(datar.length)
+            let ddiv = d3.select("#sbx").append("div").attr("class", "tooltip").style("opacity", 0)
+
+            // console.log(rractl)
+
+            //创建svg
+            let ssvgdom = d3.select("#sbx").append("svg")
+                .attr("width", ssvgyssj.width)
+                .attr("height", ssvgyssj.height)
+
+            //处理数据
+
+            let xxdat = [],
+                yydat = []
+
+            datar.forEach((a, b) => {
+                let aasr = a[0].split('-');
+                aasr[0] = parseInt(aasr[0])
+                aasr[1] = sswt(aasr[1])
+                xxdat.push(aasr)
+                yydat.push(a[1])
+            });
+
+
+            console.log(xxdat)
+            console.log(yydat)
+            // 坐标尺
+            let xscal = d3.scaleLinear().domain([d3.min(xxdat, (d) => d[0]), d3.max(xxdat, (d) => d[0])]).range([
+                ssvgyssj.padleft, ssvgyssj.width - ssvgyssj.padright
+            ])
+            let yscal = d3.scaleLinear().domain([0, d3.max(yydat)]).range([ssvgyssj.height - ssvgyssj.padbotm, ssvgyssj
+                .padtop
+            ])
+
+            //画条形图是给四周留空白时，要注意做比例尺数据时要考虑到，给rect定宽高位置是也要考虑到，(好像还有一种方法，比例尺数据正常做，
+            //就按靠边的来，到最后给rect用transform位移，没试过，应该可以)
+
+            // console.log(yscal(yydat[0]))
+            let rect = ssvgdom.selectAll("rect").data(xxdat).enter()
+                .append("rect").attr("class", "rectt")
+                .on("mouseover", function (d, i) {
+                    let hhtmstr = `${xxdat[i][0]}年${xxdat[i][01]}</br> ${yydat[i]}`
+                    ddiv.html(hhtmstr).style("top", (ssvgyssj.height - ssvgyssj.padbotm - 200) + "px")
+                        .style("left", (ssvgyssj.padleft + rractl * i) + "px").transition().duration(200).style(
+                            "opacity", 1)
+                }).on("mouseout", function (d, i) {
+                    ddiv.transition().duration(200).style("opacity", 0)
+                })
+                .attr("width", rractl)
+                .attr("x", (d, i) => (ssvgyssj.padleft + rractl * i))
+                .attr("y", ssvgyssj.height - ssvgyssj.padbotm)
+                .transition().delay((d, i) => i * 20).duration(200).ease(d3.easeBounceOut)
+                .attr("y", (d, i) => yscal(yydat[i]))
+                .attr("height", (d, i) => {
+                    return (ssvgyssj.height - ssvgyssj.padbotm - yscal(yydat[i]))
+                })
+
+
+
+
+            let xxbls = d3.axisBottom(xscal)
+            ssvgdom.append("g").attr("transform", "translate(0," + (ssvgyssj.height - ssvgyssj.padbotm) + ")").call(
+                xxbls)
+
+            let yybls = d3.axisLeft(yscal)
+            ssvgdom.append("g").attr("transform", "translate(" + ssvgyssj.padleft + ",0)").call(yybls)
+
+        }
+
+
+
+
+        function sswt(str) {
+            switch (str) {
+                case '01':
+                    return "第一季度"
+                case '04':
+                    return "第二季度"
+                case '07':
+                    return "第三季度"
+                case '10':
+                    return "第四季度"
+                default:
+                    return "见鬼了"
+            }
+        }
+
+        function send(url, str, calk) {
+            let xmlHttp = createXHR()
+            xmlHttp.open("GET", url, true);
+            xmlHttp.send(null);
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    localStorage.setItem(str, xmlHttp.response);
+                    let datobj = JSON.parse(xmlHttp.response)
+                    datobj = datobj.data
+                    calk(datobj)
+                }
+            }
+        }
+
+
+
+        function createXHR() {
+            if (typeof XMLHttpRequest !== 'undefined') {
+                return new XMLHttpRequest();
+            } else if (typeof ActiveXObject !== 'undefined') {
+                // 支持IE7之前的版本
+                if (typeof arguments.callee.activeXString !== 'string') {
+                    var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
+                    for (var i = 0; i < versions.length; i++) {
+                        try {
+                            new ActiveXObject(versions[i]);
+                            arguments.callee.activeXString = versions[i];
+                            break;
+                        } catch (e) {
+                            //
+                        }
+                    }
+                }
+                return new ActiveXObject(arguments.callee.activeXString);
+            } else {
+                throw new Error("No XHR Object available!");
+            }
+        }
+
+
+
+
+
+
+        // rect.each(function (d, i) {
+        //     d3.select(this).on("mouseover", function () {
+        //         let hhtmstr = `${xxdat[i][0]}年${xxdat[i][01]}</br> ${yydat[i]}`
+        //         ddiv.html(hhtmstr).transition().duration(200).style("opacity", 1).style("top" ,(ssvgyssj.height-ssvgyssj.padbotm-200) + "px")
+        //         .style("left",(ssvgyssj.padleft + rractl * i)+"px")
+        //     }).on("mouseout", function (d, i) {
+        //         ddiv.style("opacity", 0)
+        //     })
+        // })
+    </script>
+</body>
+
+</html>
