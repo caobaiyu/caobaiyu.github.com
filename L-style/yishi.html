@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>L-System</title>
+  <style>
+    #tutorial {
+      border: 1px solid black;
+      background-color: black ;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- width="800" height="800" -->
+  <canvas id="tutorial">
+    不支持
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById('tutorial');
+    let width = 800,
+      height = 800,
+      h = 400,
+      w = 400;
+
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+
+    let linchan = 3
+
+
+
+    // ctx.beginPath()
+    // ctx.moveTo(50, 50);
+    // ctx.lineTo(200, 50);
+    // ctx.stroke()
+
+    // dddzb(znar, deg, r)
+
+
+    function llinm() {
+      let yd = zbzuabh(0, 0)
+      // let ybo= zbzuabh(-100,0)
+      let ybo = dddzb([0, 0, 0], 0, 100)
+      let zhjd = dddzb([-100, 0, 0], 30, 100)
+      let zecd = dddzb([zhjd[0], zhjd[1], zhjd[2]], 30, 100)
+      ctx.fillStyle = "orange";
+      ctx.beginPath()
+      ctx.moveTo(yd[0], yd[1]);
+      ctx.lineTo(zbzuabh(ybo[0], ybo[1])[0], zbzuabh(ybo[0], ybo[1])[1])
+      // ctx.lineTo(zbzuabh(zhjd[0],zhjd[1])[0],zbzuabh(zhjd[0],zhjd[1])[1]);
+      // ctx.lineTo(zbzuabh(zecd[0],zecd[1])[0],zbzuabh(zecd[0],zecd[1])[1]);
+      ctx.stroke()
+      console.log(ybo)
+    }
+    // llinm()
+    // ctx.transform(cos, sin, -sin, cos, 0, 0);
+    // ctx.beginPath()
+    // ctx.moveTo(0, 0);
+    // ctx.lineTo(150, 0);
+    // ctx.stroke()
+    // ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // ctx.translate(50, 50);
+    // ctx.save();
+    // ctx.translate(20,20);
+    // ctx.rotate(30*Math.PI/180);
+    // // ctx.lineWidth=10;
+    // ctx.beginPath();
+    // ctx.moveTo(75, 50);
+    // ctx.lineTo(200, 50);
+    // ctx.stroke();
+    // ctx.restore();
+    // ctx.save();
+
+    // ctx.restore();
+
+
+    let bginm = "F++F++F"
+
+    let roult = {
+      F: "F−F++F−F"
+    }
+    let xxyy = [-300, -200, 0]
+
+
+
+    function ddid(nm) {
+      let sstr = bginm;
+      for (var i = 0; i < nm; i++) {
+        sstr = sstr.replace(/F/ig, "F−F++F−F")
+      }
+      console.log(sstr)
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3
+      ctx.beginPath()
+      ctx.moveTo(zbzuabh(xxyy[0],xxyy[1])[0], zbzuabh(xxyy[0],xxyy[1])[1]);
+      let llth = sstr.length
+      // console.log(llth)
+      for (var i = 0; i < llth; i++) {
+        // console.log(sstr[i]);
+        let xzz = onedw(sstr[i])
+        // console.log(xzz)
+        ctx.lineTo(xzz[0], xzz[1])
+      }
+      ctx.stroke()
+    }
+
+    ddid(4)
+
+
+
+
+
+
+
+
+
+
+    function onedw(str) {
+      switch (str) {
+        case "F":
+          xxyy = dddzb(xxyy, 0);
+          // console.log(xxyy)
+          // console.log(11111)
+          // let zh = zbzuabh[xxyy[0], xxyy[1]]
+          return zbzuabh(xxyy[0], xxyy[1])
+          // break;
+        case "+":
+          xxyy = dddzb(xxyy, 60);
+          // console.log(xxyy)
+          // console.log(22222222)
+
+          // let zh = zbzuabh[xxyy[0], xxyy[1]]
+          return zbzuabh(xxyy[0], xxyy[1])
+          // break;
+        case "−":
+          xxyy = dddzb(xxyy, -60);
+          // console.log(xxyy)
+          // console.log(33333)
+
+          // let zh = zbzuabh[xxyy[0], xxyy[1]]
+          return zbzuabh(xxyy[0], xxyy[1])
+          // break;
+          // case "":
+
+          // break;
+        default:
+          console.log("没找到")
+      }
+    }
+
+    //算出下一点坐标
+    function dddzb(znar, deg, r = linchan) {
+      //角度转化
+      let jdhhd = Math.PI / 180 * deg
+      let xx = znar[0]
+      let yy = znar[1]
+      let qq = znar[2]
+      let xzjd = jdhhd + qq
+      let xinarr = [];
+      let xyxzxx = xx + Math.cos(xzjd) * r;
+      let xyxzyy = yy + Math.sin(xzjd) * r;
+
+      return [xyxzxx, xyxzyy, xzjd]
+    }
+
+
+    function zbzuabh(a, b) {
+      // let xx, yy;
+      // if (a > 0) {
+      //   xx = w + a
+      // } else {
+      //   xx = w - a
+      // }
+      // if (b > 0) {
+      //   yy = h - b
+      // } else {
+      //   yy = h + b
+      // }
+      // return [xx,yy]
+      return [w + a, h - b]
+    }
+
+
+    //旋转没用，不知道坐标。
+    function xiexian(ctx, deg, x, y, wwd) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(deg * Math.PI / 180);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(wwd, 0);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+
+
+
+
+
+    // canvas.attributes("")
+
+    /*
+    beginPath()
+    closePath()
+    stroke()
+    ctx.moveTo(75, 50);
+    ctx.lineTo(100, 75);
+    ctx.lineTo(100, 25);
+*/
+  </script>
+</body>
+
+</html>
