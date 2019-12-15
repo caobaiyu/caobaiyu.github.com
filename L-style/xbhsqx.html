@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sierpiński箭头曲线</title>
+  <style>
+    #tutorial {
+      border: 1px solid black;
+      /* background-color: black; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- width="800" height="800" -->
+  <canvas id="tutorial">
+    不支持
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById('tutorial');
+    let width = 800,
+      height = 800,
+      h = 400,
+      w = 400;
+
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+
+    let linchan = 3
+
+    let csarr = []
+
+
+    function llinm() {
+      let yd = zbzuabh(0, 0)
+      // let ybo= zbzuabh(-100,0)
+      let ybo = dddzb([0, 0, 0], 180)
+      let zhjd = dddzb(ybo, -120)
+      let zecd = dddzb(zhjd, -120)
+      // let zecd = dddzb([zhjd[0], zhjd[1], zhjd[2]], 30, 100)
+      ctx.strokeStyle = "orange";
+      ctx.beginPath()
+      ctx.moveTo(yd[0], yd[1]);
+      ctx.lineTo(zbzuabh(ybo[0], ybo[1])[0], zbzuabh(ybo[0], ybo[1])[1])
+      ctx.lineTo(zbzuabh(zhjd[0], zhjd[1])[0], zbzuabh(zhjd[0], zhjd[1])[1])
+      ctx.lineTo(zbzuabh(zecd[0], zecd[1])[0], zbzuabh(zecd[0], zecd[1])[1])
+
+      ctx.stroke()
+      console.log(ybo)
+    }
+
+    // llinm()
+
+    // let bginm = "F"
+    let bginm = "F-G-G"
+
+    let roult = {
+      F: "F-G+F+G-F",
+      G: "GG"
+    }
+    //F-G+F+G-F-GG-GG
+    //F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG-GGGG
+    // let roult = {
+    //   F: "G-F-G", 
+    //   G: "F+G+F"
+    // }
+    let xxyy = [-380, -380, 0]
+    // let xxyy = [380, -380,  0]
+
+    let colotysr = "1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf"
+console.log(colotysr.length)
+
+    function ddid(nm) {
+      let sstr = bginm;
+      for (var i = 0; i < nm; i++) {
+        let arr = sstr.split("");
+        let ddfaar = arr.map((a) => {
+          if (a == "F") {
+            return roult.F
+          }
+          if (a == "G") {
+            return roult.G
+          } else {
+            return a
+          }
+        })
+        sstr = ddfaar.join("")
+      }
+      // console.log(sstr)
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 1 ;
+      let llth = sstr.length;
+      let corot = 0;
+      for (let i = 0; i < llth; i++) {
+        // console.log(xxyy[2])
+        try {
+          // console.log(sstr[i])
+          // let cy = 6 * i
+          ctx.beginPath()
+          ctx.strokeStyle = `#${colotysr.slice(6*corot,6*(corot+1))}`;
+          ctx.moveTo(zbzuabh(xxyy[0], xxyy[1])[0], zbzuabh(xxyy[0], xxyy[1])[1]);
+
+          let xzz = onedw(sstr[i])
+          ctx.lineTo(xzz[0], xzz[1])
+          ctx.stroke()
+          // console.log(colotysr.slice(6*corot,6*(corot+1)))
+
+          corot += 1
+        } catch (error) {
+
+        }
+      }
+      ctx.stroke()
+      console.log(csarr) 
+    }
+
+    ddid(8)
+
+    // F-G+F+G-F-GG-GG
+
+
+
+
+
+
+
+
+    function onedw(str) {
+      // console.log(str)
+
+      switch (str) {
+        case "F":
+          xxyy = dddzb(xxyy, 0);
+          // console.log(xxyy[2]*180/( Math.PI))
+          return zbzuabh(xxyy[0], xxyy[1])
+        case "G":
+          xxyy = dddzb(xxyy, 0);
+          // console.log(xxyy[2]*180/( Math.PI))
+          return zbzuabh(xxyy[0], xxyy[1])
+        case "+":
+          xxyy = dddzb(xxyy,-120, linchan, true);
+          // return zbzuabh(xxyy[0], xxyy[1])
+          break ;
+        case "-":
+          xxyy = dddzb(xxyy, 120, linchan, true);
+          break ;
+
+          // return zbzuabh(xxyy[0], xxyy[1])
+        default:
+        // return "meiyou"
+          // console.log("没找到")
+      }
+    }
+
+    //算出下一点坐标
+    function dddzb(znar, deg, r = linchan, zgjd = false) {
+      //角度转化
+      let jdhhd = (Math.PI / 180) * deg
+      let xx = znar[0]
+      let yy = znar[1]
+      let qq = znar[2]
+
+      let xzjd = jdhhd + qq
+      let xyxzxx = xx + Math.cos(xzjd) * r;
+      let xyxzyy = yy + Math.sin(xzjd) * r;
+      // csarr.push(Math.ceil(xzjd*180/( Math.PI)))
+      // console.log(xzjd*180/( Math.PI))
+      // csarr.push([deg,Math.ceil(qq*180/( Math.PI)), Math.ceil(xzjd*180/( Math.PI))])
+
+      return zgjd ? [xx, yy, xzjd] : [xyxzxx, xyxzyy, xzjd]
+    }
+
+
+    function zbzuabh(a, b) {
+
+      return [w + a, h - b]
+    }
+  </script>
+</body>
+
+</html>
