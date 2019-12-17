@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>植物</title>
+  <style>
+    #tutorial {
+      border: 1px solid black;
+      /* background-color: rgba(0, 0,0, .2); */
+    }
+
+    #ddiv {
+      width: 800px;
+      height: 100px;
+    }
+
+    #ddiv div {
+      float: left;
+    }
+
+    .cloiu {
+      width: 150px;
+      height: 80px;
+      font-size: 25px;
+      margin-left: 30px;
+      background-color: rgb(0, 110, 255);
+      border-radius: 5px;
+      text-align: center;
+      line-height: 80px;
+      cursor: pointer;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    #ddiv div:hover {
+      background-color: greenyellow;
+    }
+
+    #ddiv div:focus {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ddiv">
+    <div tabindex="1" class="cloiu">植物形状1</div>
+    <div tabindex="2" class="cloiu">植物形状2</div>
+    <div tabindex="3" class="cloiu">植物形状3</div>
+    <div tabindex="4" class="cloiu">植物形状4</div>
+  </div>
+  <div class="cloiu" id="ddol">下载</div>
+  <!-- width="800" height="800" -->
+  <canvas id="tutorial">
+    不支持
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById('tutorial');
+    let width = 800,
+      height = 800,
+      h = 400,
+      w = 400;
+
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+    let tcys = "Gray"   //背景色
+    let xtys = "LawnGreen"  //线条颜色
+
+    ctx.fillStyle = tcys ;
+    ctx.fillRect(0, 0, width, height);
+    // let linchan = 10
+
+    let csarr = []
+
+
+    function llinm() {
+      let yd = zbzuabh(0, 0)
+      // let ybo= zbzuabh(-100,0)
+      let ybo = dddzb([0, 0, 0], 180)
+      let zhjd = dddzb(ybo, -120)
+      let zecd = dddzb(zhjd, -120)
+      // let zecd = dddzb([zhjd[0], zhjd[1], zhjd[2]], 30, 100)
+      ctx.strokeStyle = "orange";
+      ctx.beginPath()
+      ctx.moveTo(yd[0], yd[1]);
+      ctx.lineTo(zbzuabh(ybo[0], ybo[1])[0], zbzuabh(ybo[0], ybo[1])[1])
+      ctx.lineTo(zbzuabh(zhjd[0], zhjd[1])[0], zbzuabh(zhjd[0], zhjd[1])[1])
+      ctx.lineTo(zbzuabh(zecd[0], zecd[1])[0], zbzuabh(zecd[0], zecd[1])[1])
+
+      ctx.stroke()
+      console.log(ybo)
+    }
+
+    // llinm()
+
+    // let bginm = "F"
+    let bginmar = ["F", "F", "X", "X"]
+    let roultar = [{
+      F: "F[+F]F[-F][F]" //20
+    }, {
+      F: "FF-[-F+F+F]+[+F-F-F]" //22.5
+    }, {
+      X: "F[+X]F[-X]+X",
+      F: "FF"
+    }, {
+      X: "F-[[X]+X]+F[+FX]-X", //22.5 X
+      F: "FF"
+    }]
+    //F-G+F+G-F-GG-GG
+    //F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG-GGGG
+    // let roult = {
+    //   F: "G-F-G", 
+    //   G: "F+G+F"
+    // }
+    let jiushidu = (Math.PI / 180) * 90 //初始角度，这个转化为弧度，为了后面统一。
+    let xxyy = [0, -300, jiushidu];
+    let qeqe = [];
+    let quanjuid = 0;
+    // let xxyy = [380, -380,  0]
+    // Yellow，DarkVoilet   LimeGreen，BlueViolet
+    let colotysr = "1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf"
+    // console.log(colotysr.length)
+
+    function ddid(nm, bginm, roult, ddeg, cdcf) {
+      console.log(bginm)
+      console.log(roult)
+      ctx.fillStyle = tcys ;
+      ctx.fillRect(0, 0, width, height);
+      let sstr = bginm;
+      let linchan = cdcf
+      for (var i = 0; i < nm; i++) {
+        let arr = sstr.split("");
+        let ddfaar = arr.map((a) => {
+          if (a == "F") {
+            return roult.F
+          }
+          if (a == "X") {
+            return roult.X
+          } else {
+            return a
+          }
+        })
+        sstr = ddfaar.join("")
+      }
+      // console.log(sstr)
+      // ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = xtys ;
+      ctx.beginPath()
+      let llth = sstr.length;
+      let corot = 0;
+      ctx.moveTo(zbzuabh(xxyy[0], xxyy[1])[0], zbzuabh(xxyy[0], xxyy[1])[1]);
+      for (let i = 0; i < llth; i++) {
+        // console.log(xxyy[2])
+        try {
+          // console.log(sstr[i])
+          // let cy = 6 * i
+          // ctx.strokeStyle = `#${colotysr.slice(6*corot,6*(corot+1))}`;
+          onedw(ctx, sstr[i], ddeg, linchan)
+          // console.log(colotysr.slice(6*corot,6*(corot+1)))
+        } catch (error) {
+
+        }
+      }
+      ctx.stroke()
+      // console.log(csarr)
+
+      // console.log(qeqe)
+    }
+
+    // ddid(4)
+
+    // F-G+F+G-F-GG-GG
+
+
+    function onedw(ctx, str, ddeg, xc_linchan) {
+      // console.log(Math.ceil(xxyy[2]*180/( Math.PI)))
+      let linchan = xc_linchan
+      switch (str) {
+        case "F":
+          xxyy = dddzb(xxyy, 0, linchan);
+          let xzz = zbzuabh(xxyy[0], xxyy[1])
+          ctx.lineTo(xzz[0], xzz[1])
+          break;
+
+        case "[":
+          qeqe.push(xxyy)
+          break;
+
+        case "]":
+          if (qeqe.length > 0) {
+            let dyg = qeqe.pop();
+            ctx.moveTo(zbzuabh(dyg[0], dyg[1])[0], zbzuabh(dyg[0], dyg[1])[1]);
+            xxyy = dyg
+          }
+
+          break;
+
+        case "+":
+          xxyy = dddzb(xxyy, ddeg, linchan, true);
+          break;
+
+        case "-":
+
+          xxyy = dddzb(xxyy, -ddeg, linchan, true);
+          break;
+
+          // return zbzuabh(xxyy[0], xxyy[1])
+        default:
+          break;
+
+          // return "meiyou"
+          // console.log("没找到")
+      }
+    }
+
+    //算出下一点坐标
+    function dddzb(znar, deg, r, zgjd = false) {
+      //角度转化
+      let jdhhd = (Math.PI / 180) * deg
+      let xx = znar[0]
+      let yy = znar[1]
+      let qq = znar[2]
+
+      let xzjd = jdhhd + qq
+      let xyxzxx = xx + Math.cos(xzjd) * r;
+      let xyxzyy = yy + Math.sin(xzjd) * r;
+      // csarr.push(Math.ceil(xzjd*180/( Math.PI)))
+      // console.log(xzjd*180/( Math.PI))
+      csarr.push([deg, Math.ceil(qq * 180 / (Math.PI)), Math.ceil(xzjd * 180 / (Math.PI))])
+
+      return zgjd ? [xx, yy, xzjd] : [xyxzxx, xyxzyy, xzjd]
+    }
+
+
+    function zbzuabh(a, b) {
+      return [w + a, h - b]
+    }
+
+    let ddiv = document.getElementById("ddiv");
+    ddiv.addEventListener("click", (e) => {
+      let etr = e.target;
+      let sxz = etr.getAttribute("tabindex")
+      let numm = parseInt(sxz) - 1
+
+      let degggf = [
+        [5, 20],
+        [4, 22.5],
+        [8, 20],
+        [7, 22.5]
+      ]
+      let linchan = [10, 10, 1, 2]
+      console.log(numm)
+      // bginmar
+      ctx.clearRect(0, 0, width, height)
+      xxyy = [0, -300, jiushidu];
+      qeqe = [];
+      quanjuid = numm + 1;
+      ddid(degggf[numm][0], bginmar[numm], roultar[numm], degggf[numm][1], linchan[numm])
+    })
+
+    ddid(7, "X", {
+      X: "F[+X][-X]FX",
+      F: "FF"
+    }, 25.7, 2)
+
+
+    let ddloadd = document.getElementById("ddol")
+
+    ddloadd.addEventListener("click", (e) => {
+      console.log(111)
+      dolowd(canvas, 1, quanjuid)
+    })
+
+
+
+
+
+
+    //保存图片
+    function dolowd(canvas, igte, neid) {
+      console.log([canvas, igte, neid])
+      //图片格式
+      let imgtypearr = [
+        canvas.toDataURL("image/png"),
+        canvas.toDataURL("image/jpeg")
+      ]
+      let xzmz = ["植物0", "植物1", "植物2", "植物3", "植物4"]
+      let ooa = document.createElement("a")
+      ooa.download = xzmz[neid] + ".png";
+      ooa.href = imgtypearr[igte];
+      // console.log(imgtypearr[igte])
+      // document.body.appendChild(ooa)
+      document.body.appendChild(ooa);
+      ooa.click()
+      // ooa.initEvent('click', true, true);
+      ooa.remove()
+    }
+  </script>
+</body>
+
+</html>
