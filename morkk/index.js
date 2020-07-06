@@ -14,12 +14,12 @@ Mork.mock('/login',"post" ,(options)=>{
 }
 )
 Mork.mock(/\/user\/list\/get/, 'get', options => {
-	console.log(options) ;
+	// console.log(options) ;
 	return lg.getusse.getUserList(options)
 })
 
 Mork.mock(/\/map\/line\/get/, 'get', options => {
-	console.log(options) ;
+	// console.log(options) ;
 	return lg.linedat.getlinear(options)
 })
 
@@ -27,10 +27,10 @@ Mork.mock(/\/map\/line\/get/, 'get', options => {
 // )
 
 function lgcs(a){
-	console.log(a) ;
-	console.log(a.body) ;
-	console.log(typeof a.body)
-	console.log(JSON.parse(a.body)["username"]) ;
+	// console.log(a) ;
+	// console.log(a.body) ;
+	// console.log(typeof a.body)
+	// console.log(JSON.parse(a.body)["username"]) ;
 	
 	if(a.body.username == "yuuu"){
 		return {
